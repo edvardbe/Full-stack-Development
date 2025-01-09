@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <h1>A Photography Collection</h1>
+    <p>This collection contains four photographs acquired from the <a href="https://www.nasjonalmuseet.no/">National Museum of Norway</a></p>
+    <div class="menu">
+        <div class="container" onmouseover="displayInfo(1)">
+            <p class="info" id="1">info</p>
+            <img src="resources/Kile.jpg" alt="Kile" id="1">
+        </div>
+        <div class="container" onmouseover="displayInfo(2)">
+            <p class="info" id="2">info</p>
+
+            <img src="resources/Acension de la grande pyramide par un touriste.jpg" alt="Ascension" id="2">
+        </div>
+        <div class="container" onmouseover="displayInfo(3)">
+            <p class="info" id="3">info</p>
+
+            <img src="resources/Scenografier.jpg" alt="Scenografier" id="3">
+        </div>
+        <div class="container" onmouseover="displayInfo(4)">
+            <p class="info" id="4">info</p>
+
+            <img src="resources/Robert A. Robinson.jpg" alt="Robert" id="4">
+        </div>
+    </div>
+    <div>
+        <p id="count">0</p>
+        <button class="counter" onclick="count()">Counter Button</button>
+    </div>
+</body>
+<footer></footer>
+</html>

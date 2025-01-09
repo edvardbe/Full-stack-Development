@@ -1,0 +1,28 @@
+{
+    "images": [
+        {
+            "artist" : "Oddvar I. N. Daren, Lars Paalgard, Terje Munthe",
+            "title": "Kile",
+            "year": "1985/2022",
+            "src": "Kile.jpg"
+        },
+        {
+            "artist" : "Felix Bonfils",
+            "title": "Acension de la grande pyramide par un touriste",
+            "year": "1875",
+            "src": "Acension de la grande pyramide par un touriste.jpg"
+        },
+        {
+            "artist" : "Robert A. Robinson",
+            "title": "(Uten Tittel)",
+            "year": "(Uten år)",
+            "src": "Robert A. Robinson.jpg"
+        },
+        {
+            "artist" : "Miriam Bäckström",
+            "title": "Scenografier",
+            "year": "1995-1999",
+            "src": "Scenografier.jpg"
+        }
+    ]
+}
