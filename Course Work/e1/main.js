@@ -21,20 +21,44 @@ function count() {
 
 // Function to display image information
 function displayInfo(id) {
-  let image = window.images[id - 1];
+  window.image = window.images[id - 1];
   if (!image) {
     console.error(`No image data found for ID: ${id}`);
     return;
   }
 
   let text = `
-        <span class="title">${image.name.toUpperCase()}</span><br>
-        <span class="artist">${image.artist}</span><br>
-        <span class="year">${image.year}</span>
+        <p class="title">${image.title}</p>
+        <p class="artist">${image.artist}p</p>
+        <p class="year">${image.year}</p>
     `;
-  document.getElementById(id).textContent = text;
+  console.log(text);
+  document.getElementById(id).innerHTML = text;
 }
+
+
+  
+function selectImage(id){
+  window.image = window.images[id - 1];
+  
+  // Set image source
+  const photoElement = document.getElementById('photo');
+  photoElement.src = `resources/${image.src}`;
+  
+  // Set photo info
+  document.getElementById('photo-title').textContent = image.name;
+  document.getElementById('photo-artist').textContent = image.artist;
+  document.getElementById('photo-year').textContent = image.year;
+  
+  // Apply the dominant color
+  const dominantColor = image.dominantColor;
+  const photoInfo = document.getElementById('photo-info');
+  photoInfo.style.backgroundColor = dominantColor;
+}
+  
 
 // Expose functions globally
 window.count = count;
 window.displayInfo = displayInfo;
+
+

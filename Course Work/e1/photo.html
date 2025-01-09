@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photography</title>
+    <link rel="stylesheet" href="photo.css">
+    <script type="module" src="main.js" defer></script>
+</head>
+<body>
+    <div class="photo-container">
+        <div class="photo-info" id="photo-info">
+            <span class="title" id="photo-title">Title</span><br>
+            <span class="artist" id="photo-artist">Artist</span><br>
+            <span class="year" id="photo-year">Year</span>
+        </div>
+        <img id="photo" src="" alt="Selected photo" />
+    </div>
+
+    <script>
+        // This ensures the script runs after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+    // Fetch the JSON data
+    fetch('resources/image-info.json')
+        .then(response => response.json())
+        .then(data => {
+            // Store the image data globally
+            window.images = data.images;
+
+            // Get the ID from the URL query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const imageId = urlParams.get('id');
+
+            if (imageId) {
+                // Call setSelectedImage function with the parsed ID
+                setSelectedImage(parseInt(imageId));
+            }
+        })
+        .catch(error => {
+            console.error('Error loading the image data:', error);
+        });
+
+    function setSelectedImage(id) {
+        // Assuming the image data is loaded into window.images
+        window.image = window.images[id - 1];
+
+        // Set image source
+        const photoElement = document.getElementById('photo');
+        photoElement.src = `resources/${window.image.src}`;
+
+        // Set photo info
+        document.getElementById('photo-title').textContent = window.image.title;
+        document.getElementById('photo-artist').textContent = window.image.artist;
+        document.getElementById('photo-year').textContent = window.image.year;
+
+        // Apply the dominant color
+        const dominantColor = window.image.dominantColor;
+        document.body.style.backgroundColor = dominantColor;
+    }
+});
+
+    </script>
+</body>
+</html>

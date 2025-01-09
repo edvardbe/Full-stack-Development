@@ -22,6 +22,7 @@ body{
 }
 
 .container {
+    transition: transform 0.3 ease;
     position: relative;
     display: inline-block;
     width: 260px;
@@ -32,6 +33,8 @@ body{
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 .container .info {
@@ -41,6 +44,7 @@ body{
     color: white; /* or any color that contrasts well with the image */
     background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -49,15 +53,27 @@ body{
     padding: 0; /* Ensure no padding */
     box-sizing: border-box; /* Ensures padding is included in width/height */
     transition: opacity 0.3s ease-in-out;
-
+    white-space: normal; /* Ensure line breaks are respected */
 }
 .container .info .title{
-    
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.container .info .artist {
+    font-size: 16px; /* Smaller font size */
+    font-style: italic; /* Italic for distinction */
+}
+
+.container .info .year {
+    font-size: 16px; /* Same size as artist */
+    color: gray; /* Slightly different color for contrast */
 }
 
 .container:hover {
     transform: scale(1.2);
-
+    z-index: 1;
     .info{
         opacity: 1; /* show the text on hover */
     }
