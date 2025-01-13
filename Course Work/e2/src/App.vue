@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div class="app-container">
     <div class="calculator">
       <div class="display">{{ displayValue }}</div>
       <div class="keys">
@@ -10,14 +11,14 @@
         <button class="operator" @click="suprise()"></button><button @click="handleInput('0')">0</button><button class="operator" @click="handleInput('.')">.</button><button class="equals" @click="calculateResult()">=</button>
       </div>
     </div>
-    <div class="log-container">
+    <div class="log">
       <button class="collapsible" :class="{collapsed: isCollapsed, revealed: !isCollapsed}" @click="toggleCollapse">{{ isCollapsed ? 'Show Log' : 'Hide Log' }}</button>
-      <div class="content" v-show="!isCollapsed">
-        <pre id="log" class=log></pre>
-        <button @click="clearLog()"><span>&#128465;</span>Clear log</button>q
-        
+      <div class="content-container" v-show="!isCollapsed">
+        <pre id="log" class="content"></pre>
+        <button @click="clearLog()">Clear log</button>
       </div>
     </div>
+  </div>
   </main>
 </template>
 

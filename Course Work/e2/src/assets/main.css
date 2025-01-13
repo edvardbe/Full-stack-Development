@@ -2,55 +2,86 @@
 
 #app {
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
   font-weight: normal;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  position: relative;
 }
 
+.app-container {
+  display: grid;
+  row-gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+  position: relative;
+  padding: 30px; /* Space for expanded log */
+}
 
 .calculator {
-  display: grid;
-  place-content: center;
-  max-width: fit-content;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
   background-color: #2d2d2d;
   padding: 1rem;
   border-radius: 10px;
+  position: relative;
+  top: 1rem;
 }
 
-.calculator .display{
+.calculator .display {
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: pre-wrap;
   background-color: #3c3c3c;
   border-radius: 10px;
   margin-bottom: 1rem;
   padding: 0.25rem;
+  min-height: 3rem;
 }
 
 .calculator .keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
-  button{
-    background-color: #3c3c3c;
-    color: white;
-    border-radius: 5px;
-  }
-  .operator{
-    background-color: #4b4b4b;
-  }
-  .equals{
-    background-color: rgb(255, 112, 60);
-  }
 }
 
-.log-container{
-  margin: 1rem;
-  position: relative;
+.calculator .keys button {
+  background-color: #3c3c3c;
+  color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 100%;
 }
-/* Style the button that is used to open and close the collapsible content */
+
+.calculator .keys .operator {
+  background-color: #4b4b4b;
+}
+
+.calculator .keys .equals {
+  background-color: rgb(255, 112, 60);
+}
+
+.log {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  margin-top: 10px;
+  bottom: 0;
+  
+}
+.log button{
+  background-color: #4b4b4b;
+  color: white;
+  border-radius: 5px;
+}
+
 .collapsible {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -62,67 +93,73 @@
   outline: none;
   font-size: 12px;
 }
+
 .collapsible.collapsed {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   background-color: #2d2d2d;
   color: white;
 }
 
 .collapsible.revealed {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   background-color: #4b4b4b;
   color: white;
 }
 
-.content {
-  position: relative;
-  top: 100%;
-  left: 0;
+.content-container {
   width: 100%;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  border: 1px solid #ccc;
   background-color: #2d2d2d;
   color: white;
   font-size: 10px;
 }
 
-.log {
-  max-height: 200px; /* Set a fixed height for the log area */
-  overflow-y: auto; /* Enable vertical scrolling */
-  white-space: pre-wrap; /* Preserve new lines and ensure text wraps */
+.content {
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
   margin: 0 0 5px 0;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #4b4b4b;
   background-color: #2d2d2d;
   color: white;
   text-align: center;
   font-size: 10px;
 }
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 
-
-/* Style the collapsible content. Note: hidden by default */
-
-
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+/* Media Queries */
+@media (max-width: 480px) {
+  .calculator-container {
+    max-width: 100%;
+    padding-bottom: 250px; /* Slightly less space on mobile */
+  }
+  
+  .calculator .keys button {
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+  
+  .log {
+    max-height: 150px;
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+@media (min-width: 481px) and (max-width: 768px) {
+  .calculator-container {
+    max-width: 350px;
   }
+}
 
-  #app {
-    display: grid;
-    padding: 0 2rem;
+@media (min-width: 769px) {
+  .calculator-container {
+    max-width: 400px;
+  }
+  
+  .calculator .keys button {
+    padding: 1.25rem;
+    font-size: 16px;
   }
 }
