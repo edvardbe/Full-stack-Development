@@ -1,1 +1,0 @@
-visualize_dominant_colors(image, dominant_colors)
