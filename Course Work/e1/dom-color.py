@@ -38,7 +38,7 @@ def find_dominant_colors(url, k=5):
     dominant_colors = np.array(kmeans.cluster_centers_, dtype='uint8')
 
     # Display the image and dominant colors
-    """visualize_dominant_colors(image, dominant_colors)"""   
+    """ visualize_dominant_colors(image, dominant_colors) """
     return dominant_colors
 
 def visualize_dominant_colors(image, dominant_colors):
@@ -81,10 +81,10 @@ for image in data_json["images"]:
     json_update = {
         "dominant_color": dom_color.tolist()
     }
-    print(f"Dominant Colors (RGB) for {image["src"]}: ", dominant_colors)
+    print(f"Dominant Colors (RGB) for {image["src"]}: \n", dominant_colors)
 
     # Convert the dominant colors to hex codes
     hex_colors = [rgb_to_hex(color) for color in dominant_colors]
-    print(f"Dominant Colors (Hex) for {image["src"]}: ", hex_colors)
+    print(f"Dominant Colors (Hex) for {image["src"]}:\n", hex_colors, "\n")
 
     

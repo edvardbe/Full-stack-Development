@@ -6,42 +6,41 @@
     <title>Exercise 1</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="main.js"></script>
+    <link rel="icon" href="resources/smiley.webp"/>
 </head>
 <body>
     <h1>A Photography Collection</h1>
     <p>This collection contains four photographs acquired from the <a href="https://www.nasjonalmuseet.no/">National Museum of Norway</a></p>
-    <div class="menu">
-        <a href="photo.html?id=1">
-            <div class="container" onmouseover="displayInfo(1)">
-                <div class="info" id="1"></div>
-                <img src="resources/Kile.jpg" alt="Kile">
-        </div>
+    <menu>
+        <a href="https://www.nasjonalmuseet.no/samlingen/objekt/NMK.2016.0107" class="container" onmouseover="displayInfo(1)"> <!-- "photo.html?id=1"> -->   
+            <div class="info" id="1"></div>
+            <img src="resources/Kile.jpg" alt="Kile"/>      
         </a>
-        <a href="photo.html?id=2">
-            <div class="container" onmouseover="displayInfo(2)">
+        <a href="https://www.nasjonalmuseet.no/samlingen/objekt/NMK.2007.6512" class="container" onmouseover="displayInfo(2)"><!-- "photo.html?id=2"> -->
                 <div class="info" id="2"></div>
-                <img src="resources/Acension de la grande pyramide par un touriste.jpg" alt="Ascension">
-        </div>
+                <img src="resources/Acension de la grande pyramide par un touriste.jpg" alt="Ascension"/>
         </a>
-        <a href="photo.html?id=3">
-            <div class="container" onmouseover="displayInfo(3)">
-                <div class="info" id="3"></div>
-
-                <img src="resources/Scenografier.jpg" alt="Scenografier">
-            </div>
+        <a href="https://www.nasjonalmuseet.no/samlingen/objekt/MS-04246-1999" class="container" onmouseover="displayInfo(3)"><!-- "photo.html?id=3"> -->
+            <div class="info" id="3"></div>
+            <img src="resources/Scenografier.jpg" alt="Scenografier"/>
         </a>
-        <a href="photo.html?id=4">
-            <div class="container" onmouseover="displayInfo(4)">
-                <p class="info" id="4"></p>
-
-                <img src="resources/Robert A. Robinson.jpg" alt="Robert">
-            </div>
+        <a href="https://www.nasjonalmuseet.no/samlingen/objekt/MS-04002-1998" class="container" onmouseover="displayInfo(4)"><!-- "photo.html?id=4"> -->
+            <p class="info" id="4"></p>
+            <img src="resources/Robert A. Robinson.jpg" alt="Robert"/>
         </a>
-    </div>
-    <div>
+    </menu>
+    <menu>
+        <button onclick="count()">Counter Button</button>
         <p id="count">0</p>
-        <button class="counter" onclick="count()">Counter Button</button>
-    </div>
+
+        <button class="hideShow" onclick="hideShowSmiley()">Reveal smiley</button>
+        <img src="resources/smiley.webp" id="smiley" class="smiley">
+
+    </menu>
+    <footer>
+        <p class="name">Created by Edvard Berdal Eek</p>
+        <p class="email">edvard.berdal.eek@gmail.com</p>
+    </footer>
 </body>
-<footer></footer>
+
 </html>

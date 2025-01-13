@@ -6,8 +6,28 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
     gap: 5px;
+    transition: background-color 0.3 ease;
 }
-.counter{
+
+footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    text-align: left;
+}
+footer .name{
+    font-size: 12px;
+    font-style: bold;
+}
+footer .email{
+    font-size: 12px;
+    font-style: italic;
+}
+button{
     padding: 10px 20px;
     font-size: 18px;
     border: none;
@@ -15,18 +35,20 @@ body{
     cursor: pointer;
 }
 
-.menu{
+menu{
     display: flex;
     position: center;
     gap: 5px;
+    max-width: 90vw;
+    max-height: 60vh;
 }
 
 .container {
     transition: transform 0.3 ease;
     position: relative;
     display: inline-block;
-    width: 260px;
-    height: 400px;
+    aspect-ratio: 0.65;
+    width: 25%;
 }
 
 .container img {
@@ -68,13 +90,19 @@ body{
 
 .container .info .year {
     font-size: 16px; /* Same size as artist */
-    color: gray; /* Slightly different color for contrast */
+    color: white; /* Slightly different color for contrast */
 }
 
 .container:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     z-index: 1;
     .info{
         opacity: 1; /* show the text on hover */
     }
+}
+
+.smiley {
+    display: none;
+    width: 40px;
+    height: 40px;
 }

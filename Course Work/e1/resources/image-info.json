@@ -5,7 +5,7 @@
             "title": "Kile",
             "year": "1985/2022",
             "src": "Kile.jpg",
-            "domColor": "#2c2c2c"
+            "domColor": "#c1c1c1"
         },
         {
             "artist" : "Felix Bonfils",
@@ -26,7 +26,7 @@
             "title": "(Uten Tittel)",
             "year": "(Uten år)",
             "src": "Robert A. Robinson.jpg",
-            "domColor": "#eae8e2"
+            "domColor": "#35312e"
         }
     ]
 }

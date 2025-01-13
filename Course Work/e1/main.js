@@ -5,10 +5,6 @@ fetch('./resources/image-info.json')
     // Store the images array globally
     window.images = data.images;
 
-    /* // Initialize event listeners for image containers after data is loaded
-    document.querySelectorAll('.container').forEach((container, index) => {
-      container.addEventListener('mouseover', () => displayInfo(index + 1));
-    }); */
   });
 
 // Function to increment and display count
@@ -19,6 +15,15 @@ function count() {
   countElement.textContent = currentCount + 1;
 }
 
+function hideShowSmiley() {
+  const smiley = document.getElementById('smiley');
+  if (smiley.style.display === 'none') {
+    smiley.style.display = 'block';
+  } else {
+    smiley.style.display = 'none';
+  }
+}
+
 // Function to display image information
 function displayInfo(id) {
   window.image = window.images[id - 1];
@@ -27,37 +32,38 @@ function displayInfo(id) {
     return;
   }
 
+  // Here i decided to use a different template than list, in contrast to what the task suggested
   let text = `
         <p class="title">${image.title}</p>
         <p class="artist">${image.artist}p</p>
         <p class="year">${image.year}</p>
     `;
-  console.log(text);
   document.getElementById(id).innerHTML = text;
+  const domColor = image.domColor;
+  console.log(domColor);
+  if(hexToRGBAverage(domColor) > 127){
+    document.body.style.color = 'black';
+  }
+  else{
+    document.body.style.color = 'white';
+  }
+  
+  document.body.style.backgroundColor = domColor;
 }
 
-
-  
-function selectImage(id){
-  window.image = window.images[id - 1];
-  
-  // Set image source
-  const photoElement = document.getElementById('photo');
-  photoElement.src = `resources/${image.src}`;
-  
-  // Set photo info
-  document.getElementById('photo-title').textContent = image.name;
-  document.getElementById('photo-artist').textContent = image.artist;
-  document.getElementById('photo-year').textContent = image.year;
-  
-  // Apply the dominant color
-  const dominantColor = image.dominantColor;
-  const photoInfo = document.getElementById('photo-info');
-  photoInfo.style.backgroundColor = dominantColor;
+function hexToRGBAverage(hex){
+  // Remove the
+  hex = hex.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  const avg = (r + g + b) / 3;
+  return avg;
 }
   
 
 // Expose functions globally
+window.hideShowSmiley = hideShowSmiley;
 window.count = count;
 window.displayInfo = displayInfo;
 
