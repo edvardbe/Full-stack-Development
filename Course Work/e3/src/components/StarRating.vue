@@ -43,8 +43,6 @@
       const hoverRating = (value) => {
         isHovered.value = true;
         hoverValue.value = value;
-        console.log("Value: " + value + ", isHovered.value: " + isHovered.value + ", hoverValue: "+ hoverValue.value);
-
       };
   
       const resetHover = () => {

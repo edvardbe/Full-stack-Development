@@ -10,40 +10,59 @@
       <div class="name-box">
         <div class="name">
         <label for="first-name">First name:</label>
-        <input id="first-name" type="text" placeholder="Jane " autocomplete="given-name" required/> 
+        <input id="first-name" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name" required/> 
       </div>
       <div class="name">
       <label for="last-name">Last name:</label>
-      <input id="last-name" type="text" placeholder="Doe" autocomplete="family-name" required/>
+      <input id="last-name" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name" required/>
     </div>
   </div>
 
       
       <label for="email">E-mail:</label>
-      <input id="email" placeholder="jane.doe@lorem.com" type="email" autocomplete="off" required/> 
+      <input id="email" v-model="store.email" placeholder="jane.doe@lorem.com" type="email" autocomplete="off" required/> 
 
       <div>Designation:</div>
 
-      <form id="designation" class="select-radio" required>
-        <input type="radio" id="student" value="Student" />
-        <label for="student">Student</label>
-
-        <input type="radio" id="teacher" value="Teacher" />
-        <label for="teacher">Teacher</label>
-
-        <input type="radio" id="other" value="Other"/>
-        <label for="other">Other</label>
-      </form>
+      <div class="radio-group">
+        <label>
+          <input
+            type="radio"
+            name="designation"
+            value="student"
+            v-model="store.designation"
+          />
+          Student
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="designation"
+            value="teacher"
+            v-model="store.designation"
+          />
+          Teacher
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="designation"
+            value="other"
+            v-model="store.designation"
+          />
+          Other
+        </label>
+      </div>
       
 
       <p>Feedback:</p>
-      <textarea id="feedback" placeholder="Write your feedback here..."></textarea>
+      <textarea id="feedback" v-model="store.feedback" placeholder="Write your feedback here..."></textarea>
       <div>
-        <StarRating v-model="userRating" :max-stars="5" @ratingData="updateRating" />
-        <p>Selected rating: {{ userRating }}</p>
+        <StarRating v-model="store.userRating" :max-stars="5" @ratingData="updateRating" />
+        <p>Selected rating: {{ store.userRating }}</p>
       </div>
       <div class="footer">
-        <input type="submit" :disabled="true"/>
+        <input type="submit" :disabled="this.isDisabled"/>
       </div>
     </div>
     
@@ -52,12 +71,24 @@
 
 <script>
 import StarRating from '@/components/StarRating.vue';
+import { useContactStore } from '../stores/contactStore';
+
+import { ref, computed } from 'vue';
   export default {
     name: 'ContactForm',
-    
-    data() {
-      return {
-        userRating: 0,
+    setup() {
+      const store = useContactStore();
+      const isDisabled = computed(() => {
+      return (
+        !store.firstName || 
+        !store.lastName || 
+        !store.email || 
+        !store.feedback
+      );
+    });
+      return { 
+        store,
+        isDisabled,
       };
     },
     components: {
@@ -66,8 +97,9 @@ import StarRating from '@/components/StarRating.vue';
     methods: {
       updateRating(newRating) {
         // Handle the new rating as needed.
-        this.userRating = newRating;
+        this.store.userRating = newRating;
       },
+      
     },
     props: {
       // Optional prop to pass custom class for different button styles
@@ -81,9 +113,7 @@ import StarRating from '@/components/StarRating.vue';
       },
     },
   };
-  /* const isDisabled = computed(() => {
-      return !firstName.value || !lastName.value || !email.value || !userRating.value;
-  }); */
+
   </script>
 
 <style scoped>
@@ -151,7 +181,7 @@ import StarRating from '@/components/StarRating.vue';
   gap: 10px;
 }
 
-.select-radio {
+.radio-group {
   display: flex;
   align-items: center;
   justify-content: center;
