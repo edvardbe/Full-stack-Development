@@ -1,0 +1,217 @@
+<template>
+  <form class="contact-form">
+    <!-- Top-left button -->
+    <div class="header">
+      <button class="exit" @click="$router.go(-1)">x</button>
+    </div>
+
+    <!-- Content of the contact form -->
+    <div class="content">
+      <div class="name-box">
+        <div class="name">
+        <label for="first-name">First name:</label>
+        <input id="first-name" type="text" placeholder="Jane " autocomplete="given-name" required/> 
+      </div>
+      <div class="name">
+      <label for="last-name">Last name:</label>
+      <input id="last-name" type="text" placeholder="Doe" autocomplete="family-name" required/>
+    </div>
+  </div>
+
+      
+      <label for="email">E-mail:</label>
+      <input id="email" placeholder="jane.doe@lorem.com" type="email" autocomplete="off" required/> 
+
+      <div>Designation:</div>
+
+      <form id="designation" class="select-radio" required>
+        <input type="radio" id="student" value="Student" />
+        <label for="student">Student</label>
+
+        <input type="radio" id="teacher" value="Teacher" />
+        <label for="teacher">Teacher</label>
+
+        <input type="radio" id="other" value="Other"/>
+        <label for="other">Other</label>
+      </form>
+      
+
+      <p>Feedback:</p>
+      <textarea id="feedback" placeholder="Write your feedback here..."></textarea>
+      <div>
+        <StarRating v-model="userRating" :max-stars="5" @ratingData="updateRating" />
+        <p>Selected rating: {{ userRating }}</p>
+      </div>
+      <div class="footer">
+        <input type="submit" :disabled="true"/>
+      </div>
+    </div>
+    
+  </form>
+</template>
+
+<script>
+import StarRating from '@/components/StarRating.vue';
+  export default {
+    name: 'ContactForm',
+    
+    data() {
+      return {
+        userRating: 0,
+      };
+    },
+    components: {
+      StarRating,
+    },
+    methods: {
+      updateRating(newRating) {
+        // Handle the new rating as needed.
+        this.userRating = newRating;
+      },
+    },
+    props: {
+      // Optional prop to pass custom class for different button styles
+      buttonClass: {
+        type: String,
+        default: '',
+      },
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  };
+  /* const isDisabled = computed(() => {
+      return !firstName.value || !lastName.value || !email.value || !userRating.value;
+  }); */
+  </script>
+
+<style scoped>
+/* Button styles */
+
+
+
+
+/* Contact form container */
+.contact-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100vh;
+  background-color:#3c3c3c;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  padding: 1rem;
+  gap: 10px;
+  right: 1rem;
+
+}
+
+/* Position the "x" button in the top-left corner */
+.header {
+  position: absolute; /* Makes the button independent of the flow */
+  top: 1rem;
+  left: 1rem;
+  margin: 0;
+}
+.footer {
+  bottom: 1rem;
+  right: 1rem;
+  margin: 0;
+  position: absolute;
+}
+
+.exit {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.exit:hover {
+  color: red;
+}
+
+
+/* Contact form content styles */
+.content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  gap: 10px;
+}
+
+.select-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+}
+
+.name-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+}
+.name {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+input[type=email], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  font-size: 24px;
+  background-color: #3c3c3c;
+  border: 1px solid black;
+  cursor: default;
+  outline: none;
+  transition: background-color 0.3s;
+  color: white;
+  border-radius: 5px;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover:not(:disabled){
+  background-color: #555;
+}
+
+input[type=submit]:disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+</style>
