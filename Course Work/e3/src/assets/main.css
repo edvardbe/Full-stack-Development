@@ -1,7 +1,7 @@
 @import './base.css';
 
 #app {
-  min-height: 100vh;
+  height: 100vh;
   font-weight: normal;
   display: flex;
   align-items: center;
@@ -13,9 +13,11 @@
   display: grid;
   row-gap: 10px;
   width: 100%;
-  max-width: 400px;
+  max-width: 50%;
   margin: 10px;
   position: relative;
+  justify-content: center;
+  align-items: center;
   padding: 30px; /* Space for expanded log */
 }
 

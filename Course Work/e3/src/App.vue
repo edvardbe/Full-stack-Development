@@ -1,10 +1,13 @@
 <template>
   <Calculator/>
-  <nav>
-      <RouterLink to="/"></RouterLink>
-  </nav>
-  <RouterView/>
-</template>
+<!--   <div class="router-container">
+ -->    <nav>
+      <!-- Link displaying the HomeView which contains a link to the contact form -->
+        <RouterLink to="/"></RouterLink>
+    </nav>
+    <RouterView/>
+<!--   </div>
+ --></template>
 
 <script lang="js">
 import { RouterLink, RouterView } from 'vue-router';

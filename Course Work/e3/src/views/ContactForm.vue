@@ -26,31 +26,31 @@
 
       <div class="radio-group">
         <label>
+          Student
           <input
             type="radio"
             name="designation"
             value="student"
             v-model="store.designation"
           />
-          Student
         </label>
         <label>
+          Teacher
           <input
             type="radio"
             name="designation"
             value="teacher"
             v-model="store.designation"
-          />
-          Teacher
+          />          
         </label>
         <label>
+          Other
           <input
             type="radio"
             name="designation"
             value="other"
             v-model="store.designation"
-          />
-          Other
+          />       
         </label>
       </div>
       
@@ -81,9 +81,10 @@ import { ref, computed } from 'vue';
       const isDisabled = computed(() => {
       return (
         !store.firstName || 
-        !store.lastName || 
+        !store.lastName ||
+        !store.designation ||
         !store.email || 
-        !store.feedback
+        !store.userRating
       );
     });
       return { 
@@ -124,11 +125,11 @@ import { ref, computed } from 'vue';
 
 /* Contact form container */
 .contact-form {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
-  width: 50%;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color:#3c3c3c;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
   display: flex;
@@ -137,8 +138,6 @@ import { ref, computed } from 'vue';
   justify-content: center; /* Center content vertically */
   padding: 1rem;
   gap: 10px;
-  right: 1rem;
-
 }
 
 /* Position the "x" button in the top-left corner */
