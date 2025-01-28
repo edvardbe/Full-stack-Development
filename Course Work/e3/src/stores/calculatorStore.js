@@ -15,32 +15,46 @@ export const useCalculatorStore = defineStore('calculator', {
   
   actions: {
     handleInput(input) {
+      console.log("Last input: " + this.lastInput);
+
+
       // Replace
-      if (this.isCompleted || this.errMsgs.indexOf(this.displayValue) >= 0) {
+       if ((this.errMsgs.indexOf(this.displayValue) >= 0 || this.displayValue === '0') && this.operators.indexOf(input) >= 0) {
+
+        console.log("Second");
+        this.isCompleted = false;
+        this.displayValue = '0' + input;
+     
+      // Append input
+      } else if (this.isCompleted || this.errMsgs.indexOf(this.displayValue) >= 0) {
 
         console.log("First");
         this.isCompleted = false;
         this.displayValue = input;
 
       // Operate with 0
-      } else if (this.displayValue === '0' && this.operators.indexOf(input) >= 0) {
-
-        console.log("Second");
-        this.isCompleted = false;
-        this.displayValue = '0' + input;
-      
-      // Append input
-      } else if (this.operators.indexOf(input) >= 0 && this.operators.indexOf(this.lastInput) >= 0) {
-        console.log("Replaced operator")
+      }
+       else if (this.operators.indexOf(input) >= 0 && this.operators.indexOf(this.lastInput) >= 0) {
         this.del();
         this.displayValue += input;
       } else {
-        console.log("Third: " + this.isCompleted + ", " + this.errMsgs.indexOf(this.displayValue));
         this.isCompleted = false;
-        this.displayValue += input;
+
+        if(!(this.hangingZero() && input === '0')){
+          this.displayValue += input;
+          
+        }
       }
       this.lastInput = input;
+      
     },
+
+    hangingZero(){
+      let hang = (this.displayValue === '0' || (this.displayValue.trim().length > 1 && ((this.displayValue.slice(-1, this.displayValue.length) === '0') && this.operators.indexOf(this.displayValue.slice(-2,-1)) > 0)));
+      console.log("Hanging zero: " + hang);
+      return hang;
+    },
+
     calculateResult() {
       try {
         this.isCompleted = true;
