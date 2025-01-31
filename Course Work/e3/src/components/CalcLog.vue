@@ -1,7 +1,7 @@
 <template>
     <div class="log">
-        <button class="collapsible" :class="{collapsed: store.isCollapsed, revealed: !store.isCollapsed}" @click="store.toggleCollapsed()">{{ store.isCollapsed ? 'Show Log' : 'Hide Log' }}</button>
-        <div class="content-container" v-show="!store.isCollapsed">
+        <button class="collapsible" :class="{collapsed: this.isCollapsed, revealed: !this.isCollapsed}" @click="this.toggleCollapsed()">{{ this.isCollapsed ? 'Show Log' : 'Hide Log' }}</button>
+        <div class="content-container" v-show="!this.isCollapsed">
         <div id="log" class="content">
             <pre v-for="entry in store.log" :key="entry.id">{{ entry }}</pre>
         </div>
@@ -11,9 +11,24 @@
 </template>
   
 <script>
-  import { useCalculatorStore } from '../stores/calculatorStore';
+  import { useCalculatorStore } from '../stores/logStore';
   
   export default {
+    data() {
+      return {
+        isCollapsed: true,
+      }
+    },
+    methods: {
+      toggleCollapsed(){
+        this.isCollapsed = !this.isCollapsed;
+        if(this.isCollapsed){
+          console.log("Log closed")
+        } else {
+          console.log("Log opened")
+        };
+      },
+    },
     setup() {
       const store = useCalculatorStore();
       return { store };
@@ -23,11 +38,12 @@
   
 <style scoped>
     .log {
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-    margin-top: 10px;
-    bottom: 0;
+      max-width: 400px;
+
+      min-width: 60%;
+      position: relative;
+      margin-top: 10px;
+      bottom: 0;
     }
     .log button{
       width: 100%;

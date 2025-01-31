@@ -1,6 +1,6 @@
 import { describe, it, beforeEach, expect, test } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
-import { useCalculatorStore } from "@/stores/calculatorStore";
+import { useCalculatorStore } from "@/stores/logStore";
 
 
 describe('Data Store Actions Tests', () => {

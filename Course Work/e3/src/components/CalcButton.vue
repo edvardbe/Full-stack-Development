@@ -24,13 +24,13 @@
 <style scoped>
     .calc-button {
         width: 100%;
-        height: 60px;
-        font-size: 24px;
+        height: 100%;
+        padding: 10% 0 10% 0;
+        font-size: 18px;
         background-color: #3c3c3c;
         border: 1px solid #ddd;
         border-color: black;
         cursor: pointer;
-        outline: none;
         transition: background-color 0.3s;
         color: white;
         border-radius: 5px;

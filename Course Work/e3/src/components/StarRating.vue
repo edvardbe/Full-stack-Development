@@ -7,8 +7,8 @@
         @mouseover="hoverRating(i)"
         @mouseleave="resetHover"
         :class="[
-          'star', isHovered && i <= hoverValue && i > rating ? 'hover-filled' : '',
-          i <= rating ? 'filled' : ''
+          'star', i <= modelValue ? 'filled' : '', isHovered && i <= hoverValue && i > modelValue ? 'hover-filled' : ''
+          
         ]"
       >
         ★
@@ -17,10 +17,15 @@
   </template>
   
   <script>
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   
   export default {
     props: {
+      modelValue: {
+        type: Number, // v-model value
+        default: 0,
+      },
+
       value: {
         type: Number,
         default: 0,
@@ -31,13 +36,16 @@
       },
     },
     setup(props, { emit }) {
-      const rating = ref(props.value);
+      
       const isHovered = ref(false);
-      const hoverValue = ref(props.value);
-  
+      const hoverValue = ref(0);
+
+      const rating = computed({
+        get: () => props.modelValue,
+        set: (newRating) => emit('update:modelValue', newRating), // Sync with parent
+      });
       const setRating = (newRating) => {
         rating.value = newRating;
-        emit('ratingData', newRating);
       };
   
       const hoverRating = (value) => {

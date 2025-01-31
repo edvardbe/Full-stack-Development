@@ -1,12 +1,31 @@
 {
-    "data":[
-        {
-            "id": 0,
-            "first-name": "Test",
-            "last-name": "Testinson",
-            "email": "lorem@ipsum.com",
-            "feedback": "Very Good!:)",
-            "rating": 5
-        }
-    ]
+  "data": [
+    {
+      "id": "0",
+      "first-name": "Test",
+      "last-name": "Testinson",
+      "email": "lorem@ipsum.com",
+      "designation": "Other",
+      "feedback": "Very Good!:)",
+      "rating": 5
+    },
+    {
+      "id": "4a3b",
+      "first-name": "Edvard Berdal",
+      "last-name": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "teacher",
+      "feedback": "This might be it:)",
+      "rating": 5
+    },
+    {
+      "id": "55fc",
+      "first-name": "Edvard Berdal",
+      "last-name": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    }
+  ]
 }

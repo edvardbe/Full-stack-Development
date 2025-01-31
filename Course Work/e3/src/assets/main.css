@@ -1,103 +1,15 @@
 @import './base.css';
 
+html, body {
+  height: 100%;
+}
+
 #app {
-  height: 100vh;
+  height: 100%;
   font-weight: normal;
-  display: flex;
+  display: block flex;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-.app-container {
-  display: grid;
-  row-gap: 10px;
-  width: 100%;
-  max-width: 50%;
-  margin: 10px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  padding: 30px; /* Space for expanded log */
-}
-
-.calculator {
-  width: 100%;
-  max-width: 400px;
-  background-color: #2d2d2d;
-  padding: 1rem;
-  border-radius: 10px;
-  position: relative;
-  top: 1rem;
-}
-
-.calculator .display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: pre-wrap;
-  background-color: #3c3c3c;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  padding: 0.25rem;
-  min-height: 3rem;
-}
-
-.calculator .keys {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-}
-
-.calculator .keys button {
-  background-color: #3c3c3c;
-  color: white;
-  border-radius: 5px;
-  padding: 1rem;
-  width: 100%;
-}
-
-.calculator .keys .operator {
-  background-color: #4b4b4b;
-}
-
-.calculator .keys .equals {
-  background-color: rgb(255, 112, 60);
-}
-
-
-
-/* Media Queries */
-@media (max-width: 480px) {
-  .calculator-container {
-    max-width: 100%;
-    padding-bottom: 250px; /* Slightly less space on mobile */
-  }
-  
-  .calculator .keys button {
-    padding: 0.75rem;
-    font-size: 14px;
-  }
-  
-  .log {
-    max-height: 150px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .calculator-container {
-    max-width: 350px;
-  }
-}
-
-@media (min-width: 769px) {
-  .calculator-container {
-    max-width: 400px;
-  }
-  
-  .calculator .keys button {
-    padding: 1.25rem;
-    font-size: 16px;
-  }
+  gap: 10px;
 }
