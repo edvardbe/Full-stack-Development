@@ -7,8 +7,7 @@
 
 <style scoped>
 .contact-link {
-  
-  font-size: 24px;
+  font-size: 18px;
   background-color: #3c3c3c;
   border: 1px solid black;
   cursor: pointer;
@@ -16,7 +15,7 @@
   transition: background-color 0.3s;
   color: white;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
 }
 .contact-link:hover{
   background-color: #555;

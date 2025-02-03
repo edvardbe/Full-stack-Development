@@ -1,28 +1,28 @@
 <template>
   <div class="calculator-container">
     <div class="calculator">
-      <div class="display">{{ this.displayValue }}</div>
+      <div class="display">{{ calcStore.displayValue }}</div>
       <div class="keys">
-        <CalcButton class="operator" @click="this.clear()">C</CalcButton>
-        <CalcButton class="operator" @click="this.ans()">ANS</CalcButton>
-        <CalcButton class="operator" @click="this.del()">DEL</CalcButton>
-        <CalcButton class="operator" @click="this.handleInput('+')" :disabled="this.isOperatorDisabled('+')">+</CalcButton>
-        <CalcButton @click="this.handleInput('1')">1</CalcButton>
-        <CalcButton @click="this.handleInput('2')">2</CalcButton>
-        <CalcButton @click="this.handleInput('3')">3</CalcButton>
-        <CalcButton class="operator" @click="this.handleInput('-')" :disabled="this.isOperatorDisabled('-')">-</CalcButton>
-        <CalcButton @click="this.handleInput('4')">4</CalcButton>
-        <CalcButton @click="this.handleInput('5')">5</CalcButton>
-        <CalcButton @click="this.handleInput('6')">6</CalcButton>
-        <CalcButton class="operator" @click="this.handleInput('*')" :disabled="this.isOperatorDisabled('*')">*</CalcButton>
-        <CalcButton @click="this.handleInput('7')">7</CalcButton>
-        <CalcButton @click="this.handleInput('8')">8</CalcButton>
-        <CalcButton @click="this.handleInput('9')">9</CalcButton>
-        <CalcButton class="operator" @click="this.handleInput('/')" :disabled="this.isOperatorDisabled('/')">/</CalcButton>
-        <CalcButton class="operator" @click="this.surprise()"></CalcButton>
-        <CalcButton @click="this.handleInput('0')">0</CalcButton>
-        <CalcButton class="operator" @click="this.handleInput('.')" :disabled="this.isOperatorDisabled('.')">.</CalcButton>
-        <CalcButton class="equals" @click="this.calculateResult()">=</CalcButton>
+        <CalcButton class="operator" @click="clear()">C</CalcButton>
+        <CalcButton class="operator" @click="ans()">ANS</CalcButton>
+        <CalcButton class="operator" @click="del()">DEL</CalcButton>
+        <CalcButton class="operator" @click="handleInput('+')" :disabled="isOperatorDisabled('+')">+</CalcButton>
+        <CalcButton @click="handleInput('1')">1</CalcButton>
+        <CalcButton @click="handleInput('2')">2</CalcButton>
+        <CalcButton @click="handleInput('3')">3</CalcButton>
+        <CalcButton class="operator" @click="handleInput('-')" :disabled="isOperatorDisabled('-')">-</CalcButton>
+        <CalcButton @click="handleInput('4')">4</CalcButton>
+        <CalcButton @click="handleInput('5')">5</CalcButton>
+        <CalcButton @click="handleInput('6')">6</CalcButton>
+        <CalcButton class="operator" @click="handleInput('*')" :disabled="isOperatorDisabled('*')">*</CalcButton>
+        <CalcButton @click="handleInput('7')">7</CalcButton>
+        <CalcButton @click="handleInput('8')">8</CalcButton>
+        <CalcButton @click="handleInput('9')">9</CalcButton>
+        <CalcButton class="operator" @click="handleInput('/')" :disabled="isOperatorDisabled('/')">/</CalcButton>
+        <CalcButton class="operator" @click="surprise()"></CalcButton>
+        <CalcButton @click="handleInput('0')">0</CalcButton>
+        <CalcButton class="operator" @click="handleInput('.')" :disabled="isOperatorDisabled('.')">.</CalcButton>
+        <CalcButton class="equals" @click="calculateResult()">=</CalcButton>
       </div>
     </div>
     <CalcLog/>
@@ -30,7 +30,9 @@
 </template>
 
 <script>
-import { useCalculatorStore } from '../stores/logStore';
+import { useLogStore } from '../stores/logStore';
+import { useCalculatorStore } from '../stores/calculatorStore';
+
 import CalcButton from "./CalcButton.vue";
 import CalcLog from "./CalcLog.vue";
 
@@ -40,129 +42,123 @@ export default {
     CalcButton,
     CalcLog,
   },
+  setup() {
+    const calcStore = useCalculatorStore();
+    const logStore = useLogStore();
+    
 
-  data() {
-    return {
-      displayValue: '0',
-      previousAnswer: '',
-      errMsgs: ['Error', 'Undefined', ':)'],
-      operators: ['+', '-', '/', '*'],
-      commaHang: false,
-      lastInput: null,
-      disabledOperator: false,
-      isCompleted: true,
-    }
-  },
-  methods: {
-    handleInput(input) {
-      console.log("Last input: " + this.lastInput);
-      if(this.hangingZero() && input === '0') return;
-      if(input === '.' && this.operators.indexOf(this.lastInput) >= 0) return;
-      if(input === '.' && this.hasHangingComma()) return;
+    const logg = (message) => {
+      logStore.logger(message);
+    };
+
+    const handleInput = (input) => {
+      console.log("Last input: " + calcStore.lastInput);
+      if (hangingZero(input) && input === '0') return;
+      if (input === '.' && calcStore.operators.indexOf(calcStore.lastInput) >= 0) return;
+      if (input === '.' && hasHangingComma()) return;
 
       // Replace
-       if ((this.errMsgs.indexOf(this.displayValue) >= 0 || this.displayValue === '0') && this.operators.indexOf(input) >= 0) {
-
+      if ((calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0 || calcStore.displayValue === '0') && calcStore.operators.indexOf(input) >= 0) {
         console.log("Second");
-        this.isCompleted = false;
-        this.displayValue = '0' + input;
-     
-      // Append input
-      } else if (this.isCompleted || this.errMsgs.indexOf(this.displayValue) >= 0) {
-
+        calcStore.isCompleted = false;
+        calcStore.displayValue = '0' + input;
+      } else if (calcStore.isCompleted || calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0) {
         console.log("First");
-        this.isCompleted = false;
-        this.displayValue = input;
-
-      // Operate with 0
-      }
-       else if ((this.operators.indexOf(input) >= 0 && this.operators.indexOf(this.lastInput) >= 0)) {
-          this.del();
-          this.displayValue += input;
-    
+        calcStore.isCompleted = false;
+        calcStore.displayValue = input;
+      } else if (calcStore.operators.indexOf(input) >= 0 && calcStore.operators.indexOf(calcStore.lastInput) >= 0) {
+        del();
+        calcStore.displayValue += input;
       } else {
-        this.isCompleted = false;
-          this.displayValue += input;
-          
-        
+        calcStore.isCompleted = false;
+        calcStore.displayValue += input;
       }
-      this.lastInput = input;
-      
-    },
+      calcStore.lastInput = input;
+    };
 
-    hangingZero(){
-      let hang = (this.displayValue === '0' || (this.displayValue.trim().length > 1 && ((this.displayValue.slice(-1, this.displayValue.length) === '0') && this.operators.indexOf(this.displayValue.slice(-2,-1)) > 0)));
+    const hangingZero = (input) => {
+      let hang = (calcStore.displayValue === '0' || (calcStore.displayValue.trim().length > 1 && ((calcStore.displayValue.slice(-1, calcStore.displayValue.length) === '0') && calcStore.operators.indexOf(calcStore.displayValue.slice(-2, -1)) > 0)));
       return hang;
-    },
+    };
 
-    hasHangingComma() {
-      const parts = this.displayValue.split(/[\+\-\*\/]/); // Split by operators
+    const hasHangingComma = () => {
+      const parts = calcStore.displayValue.split(/[\+\-\*\/]/); // Split by operators
       return parts[parts.length - 1].includes('.'); // Check the last number part
-    },
-    calculateResult() {
+    };
+
+    const calculateResult = () => {
       try {
-        this.isCompleted = true;
-        this.commaHang = false;
-        if (this.errMsgs.indexOf(this.displayValue) >= 0) {
-          this.displayValue = '0';
+        calcStore.isCompleted = true;
+        calcStore.commaHang = false;
+        if (calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0) {
+          calcStore.displayValue = '0';
           return;
         }
-        const fracs = this.displayValue.split('/');
+        const fracs = calcStore.displayValue.split('/');
         const nFracs = fracs.length;
-        let ret = eval(this.displayValue).toString();
+        let ret = eval(calcStore.displayValue).toString();
 
         if (fracs.slice(1, nFracs).some(frac => eval(frac).toString() === '0')) {
           ret = 'Undefined';
         }
-        this.store.logger(this.displayValue + " = " + ret);
-        this.displayValue = ret;
-        this.setPrevAns(ret)
+        logg(calcStore.displayValue + " = " + ret);
+        calcStore.displayValue = ret;
+        setPrevAns(ret);
       } catch {
-        this.store.logger(this.displayValue + " = " + "Error");
-        this.displayValue = 'Error';
+        logg(calcStore.displayValue + " = " + "Error");
+        calcStore.displayValue = 'Error';
       }
-    },
-    setPrevAns(newAns) {
-      if (this.errMsgs.indexOf(newAns) >= 0 || this.operators.indexOf(newAns) >= 0) {
+    };
+
+    const setPrevAns = (newAns) => {
+      if (calcStore.errMsgs.indexOf(newAns) >= 0 || calcStore.operators.indexOf(newAns) >= 0) {
         return;
       }
-      this.previousAnswer = newAns;
-    },
-    ans() {
-      if(this.previousAnswer !== '') this.handleInput(this.previousAnswer);
-    },
-    del(){
-      if(this.displayValue.length > 1) {
-        this.displayValue = this.displayValue.substring(0, this.displayValue.length - 1);
+      calcStore.previousAnswer = newAns;
+    };
+
+    const ans = () => {
+      if (calcStore.previousAnswer !== '') handleInput(calcStore.previousAnswer);
+    };
+
+    const del = () => {
+      if (calcStore.displayValue.length > 1) {
+        calcStore.displayValue = calcStore.displayValue.substring(0, calcStore.displayValue.length - 1);
       } else {
-        this.displayValue = '0';
-        this.isCompleted = true;
+        calcStore.displayValue = '0';
+        calcStore.isCompleted = true;
       }
-    },
-    clear() {
-      this.store.logger("CLEAR");
-      this.hangingComma = false;
-      this.isCompleted = true;
-      this.displayValue = '0';
-    },
+    };
 
-    isOperatorDisabled(operator)  {
-      this.disabledOperator = operator === this.lastInput;
-      return operator === this.lastInput;
-    },
+    const clear = () => {
+      logg('CLEAR');
+      calcStore.commaHang = false;
+      calcStore.isCompleted = true;
+      calcStore.displayValue = '0';
+    };
 
-    surprise() {
-      if (this.displayValue === '6969') {
+    const isOperatorDisabled = (operator) => {
+      calcStore.disabledOperator = operator === calcStore.lastInput;
+      return operator === calcStore.lastInput;
+    };
+
+    const surprise = () => {
+      if (calcStore.displayValue === '6969') {
         window.open('https://www.youtube.com/watch?v=nat2-OTTXyU', "_blank");
-        this.displayValue = ':)';
+        calcStore.displayValue = ':)';
       }
-    },
-  },
-  setup() {
-    const store = useCalculatorStore();
+    };
 
-    return { 
-      store,
+    return {
+      calcStore,
+      logg,
+      handleInput,
+      clear,
+      ans,
+      del,
+      isOperatorDisabled,
+      surprise,
+      calculateResult,
     };
   },
 };
@@ -174,9 +170,8 @@ export default {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    width: 100%;
+    width: 50%;
     height: 100%;
-    max-width: 50%;
     margin: 10px;
     justify-content: flex-start;
     align-items: center;
@@ -186,10 +181,9 @@ export default {
   }
 
   .calculator {
+    min-width: 300px;
+    max-height: 350px;
     aspect-ratio: 260/300;
-    max-width: 400px;
-
-    min-width: 60%;
     background-color: #2d2d2d;
     padding: 1rem;
     border-radius: 10px;

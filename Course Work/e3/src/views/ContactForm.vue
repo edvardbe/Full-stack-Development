@@ -1,5 +1,5 @@
 <template>
-  <form class="container" @submit="this.submitForm">
+  <form class="container" @submit.prevent="submitForm">
     <!-- Top-left button -->
     <div class="header">
       <nav>
@@ -15,49 +15,56 @@
       <div class="name-box">
         <div class="name">
           <label for="first-name">First name:</label>
-          <input id="first-name" v-model="this.store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
+          <input id="first-name" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
             required />
         </div>
         <div class="name">
           <label for="last-name">Last name:</label>
-          <input id="last-name" v-model="this.store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
+          <input id="last-name" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
             required />
         </div>
       </div>
 
 
       <label for="email">E-mail:</label>
-      <input id="email" v-model="this.store.email" placeholder="jane.doe@lorem.com" type="email" autocomplete="off"
-        required />
+      <input
+        id="email"
+        v-model="store.email"
+        placeholder="jane.doe@lorem.com"
+        type="email"
+        autocomplete="off"
+        required
+      />
+      <span v-if="!validateEmail(store.email)" class="error">Invalid email format</span>
 
       <div>Designation:</div>
 
       <div class="radio-group">
         <label>
           Student:
-          <input type="radio" name="designation" value="student" v-model="this.store.designation" />
+          <input type="radio" name="designation" value="student" v-model="store.designation" />
         </label>
         <label>
           Teacher:
-          <input type="radio" name="designation" value="teacher" v-model="this.store.designation" />
+          <input type="radio" name="designation" value="teacher" v-model="store.designation" />
         </label>
         <label>
           Other:
-          <input type="radio" name="designation" value="other" v-model="this.store.designation" />
+          <input type="radio" name="designation" value="other" v-model="store.designation" />
         </label>
       </div>
 
 
       <p>Feedback:</p>
-      <textarea id="feedback" v-model="this.store.feedback" placeholder="Write your feedback here..." required></textarea>
+      <textarea id="feedback" v-model="store.feedback" placeholder="Write your feedback here..." required></textarea>
       <div>
-        <StarRating v-model="this.store.userRating" :max-stars="5" @ratingData="this.store.updateRating" />
-        <p>Selected rating: {{ this.store.userRating }}</p>
+        <StarRating v-model="store.userRating" :max-stars="5"/>
+        <p>Selected rating: {{ store.userRating }}</p>
       </div>
       
     </div>
     <div class="footer">
-        <input type="submit" :disabled="this.isDisabled" />
+        <input type="submit" :disabled="!validateForm()" />
       </div>
 
   </form>
@@ -72,17 +79,33 @@ import axios from 'axios';
 import { ref, computed } from 'vue';
 export default {
   name: 'ContactForm',
-  methods: {
-    submitForm() {
-      const formData = {
-        "first-name": this.store.firstName,
-        "last-name": this.store.lastName,
-        "email": this.store.email,
-        "designation": this.store.designation,
-        "feedback": this.store.feedback,
-        "rating": this.store.userRating
+
+  setup() {
+    const validateForm = () => {
+      return !!(
+        store.firstName &&
+        store.lastName &&
+        validateEmail(store.email) &&
+        store.designation &&
+        store.feedback &&
+        store.userRating
+      );
+    };
+    
+    const submitForm = () => {
+      if (!validateForm) {
+        console.error('Form is invalid');
+        return;
       }
 
+      const formData = {
+        "first-name": store.firstName,
+        "last-name": store.lastName,
+        "email": store.email,
+        "designation": store.designation,
+        "feedback": store.feedback,
+        "rating": store.userRating
+      }
       axios.post('http://localhost:3000/data', formData)
         .then(response => {
           console.log('Form submitted successfully', response);
@@ -90,23 +113,19 @@ export default {
         .catch(error => {
           console.error('There was an error submitting the form!', error);
         });
-    }
-  },
-  setup() {
+    };
     const store = useContactStore();
-    const isDisabled = computed(() => {
-      return (
-        !store.firstName ||
-        !store.lastName ||
-        !store.email ||
-        !store.designation ||
-        !store.feedback ||
-        !store.userRating
-      );
-    });
+
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
     return {
       store,
-      isDisabled,
+      validateEmail,
+      validateForm,
+      submitForm,
     };
   },
   components: {

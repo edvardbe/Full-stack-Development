@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 
-export const useContactStore = defineStore('calculator', {
+export const useContactStore = defineStore('contactForm', {
     state: () => ({
         firstName: '',
         lastName: '',
@@ -10,11 +9,5 @@ export const useContactStore = defineStore('calculator', {
         feedback: '',
         userRating: 0,
     }),
-    
-    actions: {
-        updateRating(newRating) {
-            // Handle the new rating as needed.
-            this.store.userRating = newRating;
-        },
-    },
+    persist: true,
 });

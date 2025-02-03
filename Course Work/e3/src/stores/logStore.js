@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCalculatorStore = defineStore('calculator', {
+export const useLogStore = defineStore('log', {
   state: () => ({
     log: [],
   }),
@@ -13,4 +13,5 @@ export const useCalculatorStore = defineStore('calculator', {
       this.log = [];
     },
   },
+  persist: true,
 });

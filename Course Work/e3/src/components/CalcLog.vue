@@ -5,13 +5,13 @@
         <div id="log" class="content">
             <pre v-for="entry in store.log" :key="entry.id">{{ entry }}</pre>
         </div>
-        <button @click="store.clearLog()">Clear log</button>
+        <button class="clear-log" @click="store.clearLog()">&#128465 Clear log</button>
         </div>
     </div>
 </template>
   
 <script>
-  import { useCalculatorStore } from '../stores/logStore';
+  import { useLogStore } from '../stores/logStore';
   
   export default {
     data() {
@@ -30,7 +30,7 @@
       },
     },
     setup() {
-      const store = useCalculatorStore();
+      const store = useLogStore();
       return { store };
     },
   };
@@ -38,14 +38,12 @@
   
 <style scoped>
     .log {
-      max-width: 400px;
-
-      min-width: 60%;
+      min-width: 300px;
       position: relative;
       margin-top: 10px;
       bottom: 0;
     }
-    .log button{
+    /* .log button{
       width: 100%;
         height: 60px;
         font-size: 24px;
@@ -57,6 +55,21 @@
         transition: background-color 0.3s;
         color: white;
         border-radius: 5px;
+    } */
+
+    .clear-log{
+      width: 50%;
+      height: 30%;
+      font-size: 14px;
+      background-color: #3c3c3c;
+      border: 1px solid #ddd;
+      border-color: black;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s;
+      color: white;
+      border-radius: 5px;
+      padding: 5px;
     }
 
     .collapsible {
@@ -68,7 +81,7 @@
     border: none;
     text-align: left;
     outline: none;
-    font-size: 12px;
+    font-size: 18px;
     }
 
     .collapsible.collapsed {

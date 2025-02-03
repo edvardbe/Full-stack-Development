@@ -1,76 +1,67 @@
-import { describe, it, beforeEach, expect, test } from "vitest";
-import { setActivePinia, createPinia } from "pinia";
-import { useCalculatorStore } from "@/stores/logStore";
+import { describe, it, expect, beforeEach } from 'vitest';
+import { mount } from '@vue/test-utils';
+import { createPinia, setActivePinia } from 'pinia';
+import Calculator from '@/components/Calculator.vue';
 
+describe('Calculator.vue', () => {
+  let wrapper;
 
-describe('Data Store Actions Tests', () => {
-    let store = null
-  
-    beforeEach(() => {
-      // create a fresh Pinia instance and make it active so it's automatically picked
-      // up by any useStore() call without having to pass it to it:
-      // `useStore(pinia)`
-      setActivePinia(createPinia())
-  
-      // create an instance of the data store
-      store = useCalculatorStore()
-    })
-  
-    describe('Test handleling input', () => { 
-        it('Pressing 1', () => {
-            store.handleInput('1');
-            expect(store.displayValue === '1');
-        });
-        it('Pressing +', () => {
-            store.handleInput('+');
-            expect(store.displayValue).toBe('0+');
-        });
-        it('Pressing 0 with hanging 0', () => {
-            store.handleInput('0');
-            store.handleInput('0');
-            expect(store.displayValue).toBe('0');
-        });
-        it('Clearing input', () => {
-            store.displayValue = '999*99';
-            store.clear();
-            expect(store.displayValue).toBe('0');
-        });
-    });
+  beforeEach(() => {
+    setActivePinia(createPinia());
+    wrapper = mount(Calculator);
+  });
 
-    describe('Test calculating result', () => {
+  it('renders correctly', () => {
+    expect(wrapper.find('.calculator-container').exists()).toBe(true);
+  });
 
-        it('Calculating 1 + 1', () => {
-            store.displayValue = '1+1';
-            store.calculateResult();
-            expect(store.displayValue).toBe('2');
-        });
-        it('Calculating 1 - 1', () => {
-            store.displayValue = '1-1';
-            store.calculateResult();
-            expect(store.displayValue).toBe('0');
-        });
-        it('Calculating 3 * 3', () => {
-            store.displayValue = '3*3';
-            store.calculateResult();
-            expect(store.displayValue).toBe('9');
-        });
-        it('Calculating 9 / 3', () => {
-            store.displayValue = '9/3';
-            store.calculateResult();
-            expect(store.displayValue).toBe('3');
-        });
-        it('Dividing by 0: 100/0', () => {
-            store.displayValue = '100/0';
-            store.calculateResult();
-            expect(store.displayValue).toBe('Undefined');
-        });
-    });
+  it('initial display value is 0', () => {
+    expect(wrapper.vm.displayValue).toBe('0');
+  });
 
-    describe('test adding a duplicate city', () => {
-        it('Pressing 1', () => {
-            store.handleInput('1');
-            expect(store.displayValue === '1');
-        });
-    });
+  it('handles number input correctly', async () => {
+    await wrapper.vm.handleInput('5');
+    expect(wrapper.vm.displayValue).toBe('5');
+  });
 
-  })
+  it('handles operator input correctly', async () => {
+    await wrapper.vm.handleInput('5');
+    await wrapper.vm.handleInput('+');
+    await wrapper.vm.handleInput('3');
+    expect(wrapper.vm.displayValue).toBe('5+3');
+  });
+
+  it('calculates result correctly', async () => {
+    await wrapper.vm.handleInput('5');
+    await wrapper.vm.handleInput('+');
+    await wrapper.vm.handleInput('3');
+    await wrapper.vm.calculateResult();
+    expect(wrapper.vm.displayValue).toBe('8');
+  });
+
+  it('clears display when C is pressed', async () => {
+    await wrapper.vm.handleInput('9');
+    await wrapper.vm.clear();
+    expect(wrapper.vm.displayValue).toBe('0');
+  });
+
+  it('deletes last input when DEL is pressed', async () => {
+    await wrapper.vm.handleInput('9');
+    await wrapper.vm.handleInput('8');
+    await wrapper.vm.del();
+    expect(wrapper.vm.displayValue).toBe('9');
+  });
+
+  it('handles division by zero correctly', async () => {
+    await wrapper.vm.handleInput('5');
+    await wrapper.vm.handleInput('/');
+    await wrapper.vm.handleInput('0');
+    await wrapper.vm.calculateResult();
+    expect(wrapper.vm.displayValue).toBe('Undefined');
+  });
+
+  it('disables operator buttons correctly', async () => {
+    await wrapper.vm.handleInput('+');
+    expect(wrapper.vm.isOperatorDisabled('+')).toBe(true);
+  });
+});

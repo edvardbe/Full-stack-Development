@@ -26,6 +26,51 @@
       "designation": "student",
       "feedback": "asd",
       "rating": 3
+    },
+    {
+      "id": "f9f2",
+      "first-name": "Lærer",
+      "last-name": "Lærersen",
+      "email": "kanskje@xn--lrer-voa.no",
+      "designation": "teacher",
+      "feedback": "Jeg er en streng lærer",
+      "rating": 1
+    },
+    {
+      "id": "14e6",
+      "first-name": "Edvard Berdal",
+      "last-name": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 2
+    },
+    {
+      "id": "d2cd",
+      "first-name": "Waiting",
+      "last-name": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database",
+      "rating": 2
+    },
+    {
+      "id": "2280",
+      "first-name": "Waiting",
+      "last-name": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database",
+      "rating": 2
+    },
+    {
+      "id": "0e9e",
+      "first-name": "Waiting",
+      "last-name": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database,\nIt worked:)!",
+      "rating": 5
     }
   ]
 }
