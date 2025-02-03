@@ -3,7 +3,7 @@
     <!-- Top-left button -->
     <div class="header">
       <nav>
-      <!-- Link displaying the HomeView which contains a link to the contact form -->
+      <!-- Link displaying the X which contains a link to the HomeView-->
         <RouterLink to="/" class="exit">X</RouterLink>
     </nav>
     <RouterView/>
@@ -71,16 +71,18 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router';
+import { useRouter } from 'vue-router';
 import StarRating from '@/components/StarRating.vue';
 import { useContactStore } from '../stores/contactStore';
 import axios from 'axios';
 
 import { ref, computed } from 'vue';
+
 export default {
   name: 'ContactForm',
 
   setup() {
+    const router = useRouter();
     const validateForm = () => {
       return !!(
         store.firstName &&
@@ -109,6 +111,7 @@ export default {
       axios.post('http://localhost:3000/data', formData)
         .then(response => {
           console.log('Form submitted successfully', response);
+          router.push('/success-view');
         })
         .catch(error => {
           console.error('There was an error submitting the form!', error);

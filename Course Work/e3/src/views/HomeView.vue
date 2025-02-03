@@ -5,7 +5,7 @@
   <RouterView/>
 </template>
 
-<style scoped>
+<style global>
 .contact-link {
   font-size: 18px;
   background-color: #3c3c3c;
