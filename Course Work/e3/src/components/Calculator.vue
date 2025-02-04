@@ -170,11 +170,12 @@ export default {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
     height: 100%;
     margin: 10px;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
     padding: 30px; /* Space for expanded log */
     overflow-y: auto;
 
