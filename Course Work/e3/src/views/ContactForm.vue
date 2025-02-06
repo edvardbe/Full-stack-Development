@@ -14,13 +14,13 @@
     <div class="content">
       <div class="name-box">
         <div class="name">
-          <label for="first-name">First name:</label>
-          <input id="first-name" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
+          <label for="fname">First name:</label>
+          <input name="fname" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
             required />
         </div>
         <div class="name">
-          <label for="last-name">Last name:</label>
-          <input id="last-name" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
+          <label for="lname">Last name:</label>
+          <input name="lname" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
             required />
         </div>
       </div>
@@ -28,7 +28,7 @@
 
       <label for="email">E-mail:</label>
       <input
-        id="email"
+        name="email"
         v-model="store.email"
         placeholder="jane.doe@lorem.com"
         type="email"
@@ -37,26 +37,26 @@
       />
       <span v-if="!validateEmail(store.email)" class="error">Invalid email format</span>
 
-      <div>Designation:</div>
+      <p>Designation:</p>
 
       <div class="radio-group">
         <label>
           Student:
-          <input type="radio" name="designation" value="student" v-model="store.designation" />
+          <input type="radio" name="designation" value="Student" v-model="store.designation" />
         </label>
         <label>
           Teacher:
-          <input type="radio" name="designation" value="teacher" v-model="store.designation" />
+          <input type="radio" name="designation" value="Teacher" v-model="store.designation" />
         </label>
         <label>
           Other:
-          <input type="radio" name="designation" value="other" v-model="store.designation" />
+          <input type="radio" name="designation" value="Other" v-model="store.designation" />
         </label>
       </div>
 
 
       <p>Feedback:</p>
-      <textarea id="feedback" v-model="store.feedback" placeholder="Write your feedback here..." required></textarea>
+      <textarea name="feedback" v-model="store.feedback" placeholder="Write your feedback here..." required></textarea>
       <div>
         <StarRating v-model="store.userRating" :max-stars="5"/>
         <p>Selected rating: {{ store.userRating }}</p>
@@ -101,8 +101,8 @@ export default {
       }
 
       const formData = {
-        "first-name": store.firstName,
-        "last-name": store.lastName,
+        "fname": store.firstName,
+        "lname": store.lastName,
         "email": store.email,
         "designation": store.designation,
         "feedback": store.feedback,

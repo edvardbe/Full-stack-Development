@@ -107,6 +107,123 @@
       "designation": "student",
       "feedback": "Ja men da var jeg ferdig med det funksjonelle",
       "rating": 5
+    },
+    {
+      "id": "fae5",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "796b",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "2ed2",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "3304",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "b1c0",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "d9a8",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "63fa",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "a4dd",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "1145",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "954f",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "ceb7",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "1b46",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "ec7a",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
     }
   ]
 }

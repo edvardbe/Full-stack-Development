@@ -8,7 +8,6 @@ state: () => ({
     operators: ['+', '-', '/', '*'],
     commaHang: false,
     lastInput: null,
-    disabledOperator: false,
     isCompleted: true,
     }),
     persist: true,

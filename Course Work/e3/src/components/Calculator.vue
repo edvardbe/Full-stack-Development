@@ -3,26 +3,27 @@
     <div class="calculator">
       <div class="display">{{ calcStore.displayValue }}</div>
       <div class="keys">
-        <CalcButton class="operator" @click="clear()">C</CalcButton>
-        <CalcButton class="operator" @click="ans()">ANS</CalcButton>
-        <CalcButton class="operator" @click="del()">DEL</CalcButton>
-        <CalcButton class="operator" @click="handleInput('+')" :disabled="isOperatorDisabled('+')">+</CalcButton>
-        <CalcButton @click="handleInput('1')">1</CalcButton>
-        <CalcButton @click="handleInput('2')">2</CalcButton>
-        <CalcButton @click="handleInput('3')">3</CalcButton>
-        <CalcButton class="operator" @click="handleInput('-')" :disabled="isOperatorDisabled('-')">-</CalcButton>
-        <CalcButton @click="handleInput('4')">4</CalcButton>
-        <CalcButton @click="handleInput('5')">5</CalcButton>
-        <CalcButton @click="handleInput('6')">6</CalcButton>
-        <CalcButton class="operator" @click="handleInput('*')" :disabled="isOperatorDisabled('*')">*</CalcButton>
-        <CalcButton @click="handleInput('7')">7</CalcButton>
-        <CalcButton @click="handleInput('8')">8</CalcButton>
-        <CalcButton @click="handleInput('9')">9</CalcButton>
-        <CalcButton class="operator" @click="handleInput('/')" :disabled="isOperatorDisabled('/')">/</CalcButton>
-        <CalcButton class="operator" @click="surprise()"></CalcButton>
-        <CalcButton @click="handleInput('0')">0</CalcButton>
-        <CalcButton class="operator" @click="handleInput('.')" :disabled="isOperatorDisabled('.')">.</CalcButton>
-        <CalcButton class="equals" @click="calculateResult()">=</CalcButton>
+        <CalcButton id="clear-btn" class="operator" @click="clear()">C</CalcButton>
+        <CalcButton id="ans-btn" class="operator" @click="ans()">ANS</CalcButton>
+        <CalcButton id="del-btn" class="operator" @click="del()">DEL</CalcButton>
+        <CalcButton id="add-btn" class="operator" @click="handleInput('+')" :disabled="isOperatorDisabled('+')">+</CalcButton>
+        <CalcButton id="num-1" @click="handleInput('1')">1</CalcButton>
+        <CalcButton id="num-2" @click="handleInput('2')">2</CalcButton>
+        <CalcButton id="num-3" @click="handleInput('3')">3</CalcButton>
+        <CalcButton id="subtract-btn" class="operator" @click="handleInput('-')" :disabled="isOperatorDisabled('-')">-</CalcButton>
+        <CalcButton id="num-4" @click="handleInput('4')">4</CalcButton>
+        <CalcButton id="num-5" @click="handleInput('5')">5</CalcButton>
+        <CalcButton id="num-6" @click="handleInput('6')">6</CalcButton>
+        <CalcButton id="multiply-btn" class="operator" @click="handleInput('*')" :disabled="isOperatorDisabled('*')">*</CalcButton>
+        <CalcButton id="num-7" @click="handleInput('7')">7</CalcButton>
+        <CalcButton id="num-8" @click="handleInput('8')">8</CalcButton>
+        <CalcButton id="num-9" @click="handleInput('9')">9</CalcButton>
+        <CalcButton id="divide-btn" class="operator" @click="handleInput('/')" :disabled="isOperatorDisabled('/')">/</CalcButton>
+        <CalcButton id="surprise-btn" class="operator" @click="surprise()"></CalcButton>
+        <CalcButton id="num-0" @click="handleInput('0')">0</CalcButton>
+        <CalcButton id="decimal-btn" class="operator" @click="handleInput('.')" :disabled="isOperatorDisabled('.')">.</CalcButton>
+        <CalcButton id="equals-btn" class="equals" @click="calculateResult()">=</CalcButton>
+
       </div>
     </div>
     <CalcLog/>
@@ -69,6 +70,7 @@ export default {
       } else if (calcStore.operators.indexOf(input) >= 0 && calcStore.operators.indexOf(calcStore.lastInput) >= 0) {
         del();
         calcStore.displayValue += input;
+        calcStore.isCompleted = false;
       } else {
         calcStore.isCompleted = false;
         calcStore.displayValue += input;
@@ -138,8 +140,9 @@ export default {
     };
 
     const isOperatorDisabled = (operator) => {
-      calcStore.disabledOperator = operator === calcStore.lastInput;
-      return operator === calcStore.lastInput;
+      let disabled = operator === calcStore.lastInput;
+      console.log("Operator: " + operator + ", disabled: " + disabled);
+      return disabled;
     };
 
     const surprise = () => {
