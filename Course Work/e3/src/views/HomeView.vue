@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    
-  <nav>
-      <RouterLink to="/contact-form" class="contact-link">Contact Form</RouterLink>
-  </nav>
-  <RouterView/>
+    <nav>
+      <RouterLink name="contact-form" to="/contact-form" class="contact-link">Contact Form</RouterLink>
+    </nav>
+    <RouterView/>
   </div>
 </template>
 

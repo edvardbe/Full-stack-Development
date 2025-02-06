@@ -4,7 +4,7 @@
     <div class="header">
       <nav>
       <!-- Link displaying the X which contains a link to the HomeView-->
-        <RouterLink to="/" class="exit">X</RouterLink>
+        <RouterLink name="exit" to="/" class="exit">X</RouterLink>
     </nav>
     <RouterView/>
 
@@ -15,12 +15,12 @@
       <div class="name-box">
         <div class="name">
           <label for="fname">First name:</label>
-          <input name="fname" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
+          <input id="fname" name="fname" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
             required />
         </div>
         <div class="name">
           <label for="lname">Last name:</label>
-          <input name="lname" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
+          <input id="lname" name="lname" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
             required />
         </div>
       </div>
@@ -28,6 +28,7 @@
 
       <label for="email">E-mail:</label>
       <input
+        id="email"
         name="email"
         v-model="store.email"
         placeholder="jane.doe@lorem.com"

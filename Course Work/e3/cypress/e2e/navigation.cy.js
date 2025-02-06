@@ -7,6 +7,12 @@ describe('Navigation Tests', () => {
       cy.get('a[href="/contact-form"]').click(); // Adjust selector based on your app
       cy.url().should('include', '/contact-form');
     });
+
+    it('Should navigate back to the home view', () => {
+      cy.get('a[href="/contact-form"]').click(); // Adjust selector based on your app
+      cy.get('[name="exit"]').click();
+      cy.contains('Contact Form')
+    });
   
     it('Should navigate to the Success page after form submission', () => {
       cy.visit('/contact-form');

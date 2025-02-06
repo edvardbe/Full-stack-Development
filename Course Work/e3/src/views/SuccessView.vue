@@ -4,13 +4,13 @@
       <div class="header">
         <nav>
         <!-- Link displaying X which contains a link to the HomeView-->
-        <RouterLink to="/" class="exit">X</RouterLink>
+        <RouterLink name="exit" to="/" class="exit">X</RouterLink>
       </nav>
       <RouterView/>
     </div>
     <h1>Feedback successfully submitted!</h1>
     <nav>
-        <RouterLink to="/contact-form" class="contact-link">New Contact Form</RouterLink>
+        <RouterLink name="contact-form" to="/contact-form" class="contact-link">New Contact Form</RouterLink>
     </nav>
     <RouterView/>
     </div>
