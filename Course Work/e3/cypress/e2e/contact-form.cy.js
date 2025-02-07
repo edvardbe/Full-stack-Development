@@ -22,8 +22,11 @@ describe('Contact Form Tests', () => {
         cy.visit('/contact-form');
       
         // Assuming your form has fields with these selectors
+
+
+
         cy.get('input[name="fname"]').type('John');
-        cy.get('input[name="lname"]').type('John');
+        cy.get('input[name="lname"]').type('Doe');
         cy.get('input[name="email"]').type('johndoe@example.com');
   
         cy.get('input[type="radio"][value="Teacher"]').check();
@@ -36,7 +39,31 @@ describe('Contact Form Tests', () => {
   
         cy.get('input[type="submit"]').click();  // Adjust if needed
         cy.url().should('include', '/success-view');
-        cy.contains('Feedback successfully submitted!').should('be.visible');
+        cy.contains('Feedback successfully submitted!').should('be.visible');  
+        
+        
+      // Wait for the form submission request
+       // cy.wait('@submitForm').its('response.statusCode').should('eq', 201);
+    
+        // Check if the submitted data exists in the database
+        
+      
     });
-  });
+
+    it('Verify that last item was added', () => {
+      cy.request('http://localhost:3000/feedback').then((response) => {
+        const lastItem = response.body[response.body.length - 1];
+  
+        // Verify the expected values of the last item
+        expect(lastItem).to.have.property('fname', 'John');
+        expect(lastItem).to.have.property('lname', 'Doe');
+        expect(lastItem).to.have.property('email', 'johndoe@example.com');
+        expect(lastItem).to.have.property('designation', 'Teacher');
+        expect(lastItem).to.have.property('feedback', 'This is a test message.');
+        expect(lastItem).to.have.property('rating', 3);
+      });
+    })
+    
+});
+  
   

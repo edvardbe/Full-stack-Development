@@ -1,9 +1,9 @@
 {
-  "data": [
+  "feedback": [
     {
       "id": "0",
-      "first-name": "Test",
-      "last-name": "Testinson",
+      "fname": "Test",
+      "lname": "Testinson",
       "email": "lorem@ipsum.com",
       "designation": "Other",
       "feedback": "Very Good!:)",
@@ -11,8 +11,8 @@
     },
     {
       "id": "4a3b",
-      "first-name": "Edvard Berdal",
-      "last-name": "Eek",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
       "email": "edvard.berdal.eek@gmail.com",
       "designation": "teacher",
       "feedback": "This might be it:)",
@@ -20,8 +20,8 @@
     },
     {
       "id": "55fc",
-      "first-name": "Edvard Berdal",
-      "last-name": "Eek",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
       "email": "edvard.berdal.eek@gmail.com",
       "designation": "student",
       "feedback": "asd",
@@ -29,8 +29,8 @@
     },
     {
       "id": "f9f2",
-      "first-name": "Lærer",
-      "last-name": "Lærersen",
+      "fname": "Lærer",
+      "lname": "Lærersen",
       "email": "kanskje@xn--lrer-voa.no",
       "designation": "teacher",
       "feedback": "Jeg er en streng lærer",
@@ -38,8 +38,8 @@
     },
     {
       "id": "14e6",
-      "first-name": "Edvard Berdal",
-      "last-name": "Eek",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
       "email": "edvard.berdal.eek@gmail.com",
       "designation": "student",
       "feedback": "asd",
@@ -47,8 +47,8 @@
     },
     {
       "id": "d2cd",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database",
@@ -56,8 +56,8 @@
     },
     {
       "id": "2280",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database",
@@ -65,8 +65,8 @@
     },
     {
       "id": "0e9e",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database,\nIt worked:)!",
@@ -74,8 +74,8 @@
     },
     {
       "id": "923e",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database,\nIt worked:)!",
@@ -83,8 +83,8 @@
     },
     {
       "id": "511f",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database,\nIt worked:)!",
@@ -92,8 +92,8 @@
     },
     {
       "id": "d3a9",
-      "first-name": "Waiting",
-      "last-name": "For This",
+      "fname": "Waiting",
+      "lname": "For This",
       "email": "to@apear.in",
       "designation": "student",
       "feedback": "the database,\nIt worked:)!",
@@ -101,8 +101,8 @@
     },
     {
       "id": "bab6",
-      "first-name": "Tullball",
-      "last-name": "Hvis Dette",
+      "fname": "Tullball",
+      "lname": "Hvis Dette",
       "email": "funker@lol.no",
       "designation": "student",
       "feedback": "Ja men da var jeg ferdig med det funksjonelle",
@@ -169,6 +169,33 @@
       "email": "edvard.berdal.eek@gmail.com",
       "designation": "student",
       "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "fd10",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "b465",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "3760",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
       "rating": 3
     }
   ]

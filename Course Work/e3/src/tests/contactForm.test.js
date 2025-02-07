@@ -30,8 +30,8 @@ describe('ContactForm.vue', () => {
   it('checks form validation function', () => {
     const { validateForm, store } = wrapper.vm;
     
-    store.firstName = 'Jane';
-    store.lastName = 'Doe';
+    store.fname = 'Jane';
+    store.lname = 'Doe';
     store.email = 'jane.doe@example.com';
     store.designation = 'student';
     store.feedback = 'Great experience!';
@@ -51,8 +51,8 @@ describe('ContactForm.vue', () => {
   it('submits form successfully', async () => {
     axios.post.mockResolvedValue({ data: { success: true } });
     const store = useContactStore();
-    store.firstName = 'Jane';
-    store.lastName = 'Doe';
+    store.fname = 'Jane';
+    store.lname = 'Doe';
     store.email = 'jane.doe@example.com';
     store.designation = 'student';
     store.feedback = 'Great experience!';
@@ -60,9 +60,9 @@ describe('ContactForm.vue', () => {
 
     await wrapper.find('form').trigger('submit.prevent');
 
-    expect(axios.post).toHaveBeenCalledWith('http://localhost:3000/data', expect.objectContaining({
-      'first-name': 'Jane',
-      'last-name': 'Doe',
+    expect(axios.post).toHaveBeenCalledWith('http://localhost:3000/feedback', expect.objectContaining({
+      'fname': 'Jane',
+      'lname': 'Doe',
       email: 'jane.doe@example.com',
       designation: 'student',
       feedback: 'Great experience!',

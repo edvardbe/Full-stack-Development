@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useContactStore = defineStore('contactForm', {
     state: () => ({
-        firstName: '',
-        lastName: '',
+        fname: '',
+        lname: '',
         email: '',
         designation: '',
         feedback: '',

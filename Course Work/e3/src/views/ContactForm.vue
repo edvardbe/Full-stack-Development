@@ -15,12 +15,12 @@
       <div class="name-box">
         <div class="name">
           <label for="fname">First name:</label>
-          <input id="fname" name="fname" v-model="store.firstName" type="text" placeholder="Jane " autocomplete="given-name"
+          <input id="fname" name="fname" v-model="store.fname" type="text" placeholder="Jane " autocomplete="given-name"
             required />
         </div>
         <div class="name">
           <label for="lname">Last name:</label>
-          <input id="lname" name="lname" v-model="store.lastName" type="text" placeholder="Doe" autocomplete="family-name"
+          <input id="lname" name="lname" v-model="store.lname" type="text" placeholder="Doe" autocomplete="family-name"
             required />
         </div>
       </div>
@@ -86,8 +86,8 @@ export default {
     const router = useRouter();
     const validateForm = () => {
       return !!(
-        store.firstName &&
-        store.lastName &&
+        store.fname &&
+        store.lname &&
         validateEmail(store.email) &&
         store.designation &&
         store.feedback &&
@@ -102,14 +102,14 @@ export default {
       }
 
       const formData = {
-        "fname": store.firstName,
-        "lname": store.lastName,
+        "fname": store.fname,
+        "lname": store.lname,
         "email": store.email,
         "designation": store.designation,
         "feedback": store.feedback,
         "rating": store.userRating
       }
-      axios.post('http://localhost:3000/data', formData)
+      axios.post('http://localhost:3000/feedback', formData)
         .then(response => {
           console.log('Form submitted successfully', response);
           router.push('/success-view');
