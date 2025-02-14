@@ -4,6 +4,7 @@
 ### macOS ###
 # General
 .DS_Store
+/.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -33,5 +34,7 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+
+Learning\ Materials/Course Book.pdf
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
