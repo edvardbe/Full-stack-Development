@@ -11,8 +11,7 @@
 </template>
   
 <script>
-  import { useLogStore } from '../stores/logStore';
-  
+  import { useCalculatorStore } from '../stores/calculatorStore';
   export default {
     data() {
       return {
@@ -30,7 +29,7 @@
       },
     },
     setup() {
-      const store = useLogStore();
+      const store = useCalculatorStore();
       return { store };
     },
   };

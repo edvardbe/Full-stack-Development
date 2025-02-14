@@ -22,7 +22,7 @@
         <CalcButton id="surprise-btn" class="operator" @click="surprise()"></CalcButton>
         <CalcButton id="num-0" @click="handleInput('0')">0</CalcButton>
         <CalcButton id="decimal-btn" class="operator" @click="handleInput('.')" :disabled="isOperatorDisabled('.')">.</CalcButton>
-        <CalcButton id="equals-btn" class="equals" @click="calculateResult()">=</CalcButton>
+        <CalcButton id="equals-btn" class="equals" @click="calculateResult()" :disabled="hangingOperator()">=</CalcButton>
 
       </div>
     </div>
@@ -39,6 +39,7 @@ import CalcLog from "./CalcLog.vue";
 
 export default {
   name: 'Calculator',
+  
   components: {
     CalcButton,
     CalcLog,
@@ -46,28 +47,29 @@ export default {
   setup() {
     const calcStore = useCalculatorStore();
     const logStore = useLogStore();
+    const errMsgs = ['Error', 'Undefined', ':)'];
+    const operators = ['+', '-', '/', '*'];
+    const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     
 
-    const logg = (message) => {
-      logStore.logger(message);
-    };
+    
 
     const handleInput = (input) => {
       console.log("Last input: " + calcStore.lastInput);
-      if (hangingZero(input) && input === '0') return;
-      if (input === '.' && calcStore.operators.indexOf(calcStore.lastInput) >= 0) return;
+      if (hangingZero(input) && !calcStore.isCompleted && numbers.indexOf(input) >= 0) return;
+      if (input === '.' && operators.indexOf(calcStore.lastInput) >= 0) return;
       if (input === '.' && hasHangingComma()) return;
 
       // Replace
-      if ((calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0 || calcStore.displayValue === '0') && calcStore.operators.indexOf(input) >= 0) {
+      if ((errMsgs.indexOf(calcStore.displayValue) >= 0 || calcStore.displayValue === '0') && operators.indexOf(input) >= 0) {
         console.log("Second");
         calcStore.isCompleted = false;
         calcStore.displayValue = '0' + input;
-      } else if (calcStore.isCompleted || calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0) {
+      } else if (calcStore.isCompleted || errMsgs.indexOf(calcStore.displayValue) >= 0) {
         console.log("First");
         calcStore.isCompleted = false;
         calcStore.displayValue = input;
-      } else if (calcStore.operators.indexOf(input) >= 0 && calcStore.operators.indexOf(calcStore.lastInput) >= 0) {
+      } else if (operators.indexOf(input) >= 0 && hangingOperator()) {
         del();
         calcStore.displayValue += input;
         calcStore.isCompleted = false;
@@ -79,7 +81,7 @@ export default {
     };
 
     const hangingZero = (input) => {
-      let hang = (calcStore.displayValue === '0' || (calcStore.displayValue.trim().length > 1 && ((calcStore.displayValue.slice(-1, calcStore.displayValue.length) === '0') && calcStore.operators.indexOf(calcStore.displayValue.slice(-2, -1)) > 0)));
+      let hang = (calcStore.displayValue === '0' || (calcStore.displayValue.trim().length > 1 && ((calcStore.displayValue.slice(-1, calcStore.displayValue.length) === '0') && operators.indexOf(calcStore.displayValue.slice(-2, -1)) > 0)));
       return hang;
     };
 
@@ -88,8 +90,18 @@ export default {
       return parts[parts.length - 1].includes('.'); // Check the last number part
     };
 
+    const hangingOperator = () => {
+      return operators.indexOf(calcStore.lastInput) >= 0;
+    }
+
     const calculateResult = () => {
-      try {
+      calcStore.isCompleted = true;
+      if (errMsgs.indexOf(calcStore.displayValue) >= 0) {
+        calcStore.displayValue = '0';
+      } else{
+        calcStore.calculateResult();
+      }
+      /* try {
         calcStore.isCompleted = true;
         calcStore.commaHang = false;
         if (calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0) {
@@ -109,11 +121,11 @@ export default {
       } catch {
         logg(calcStore.displayValue + " = " + "Error");
         calcStore.displayValue = 'Error';
-      }
+      } */
     };
 
     const setPrevAns = (newAns) => {
-      if (calcStore.errMsgs.indexOf(newAns) >= 0 || calcStore.operators.indexOf(newAns) >= 0) {
+      if (errMsgs.indexOf(newAns) >= 0 || operators.indexOf(newAns) >= 0) {
         return;
       }
       calcStore.previousAnswer = newAns;
@@ -133,8 +145,7 @@ export default {
     };
 
     const clear = () => {
-      logg('CLEAR');
-      calcStore.commaHang = false;
+      calcStore.logger('CLEAR');
       calcStore.isCompleted = true;
       calcStore.displayValue = '0';
     };
@@ -154,7 +165,6 @@ export default {
 
     return {
       calcStore,
-      logg,
       handleInput,
       clear,
       ans,
@@ -162,6 +172,7 @@ export default {
       isOperatorDisabled,
       surprise,
       calculateResult,
+      hangingOperator,
     };
   },
 };
