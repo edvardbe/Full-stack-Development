@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { useLogStore } from '../stores/logStore';
 import { useCalculatorStore } from '../stores/calculatorStore';
 
 import CalcButton from "./CalcButton.vue";
@@ -46,7 +45,6 @@ export default {
   },
   setup() {
     const calcStore = useCalculatorStore();
-    const logStore = useLogStore();
     const errMsgs = ['Error', 'Undefined', ':)'];
     const operators = ['+', '-', '/', '*'];
     const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
