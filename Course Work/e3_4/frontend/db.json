@@ -296,6 +296,42 @@
       "designation": "Student",
       "feedback": "asd",
       "rating": 1
+    },
+    {
+      "id": "d961",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "8221",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "b827",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "edvard.hjelp.eek@gmail.com",
+      "designation": "Other",
+      "feedback": "Hvorfor",
+      "rating": 1
+    },
+    {
+      "id": "15c0",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Other",
+      "feedback": "Hvorfor",
+      "rating": 1
     }
   ]
 }

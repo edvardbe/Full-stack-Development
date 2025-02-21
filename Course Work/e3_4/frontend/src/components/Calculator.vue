@@ -46,7 +46,7 @@ export default {
   setup() {
     const calcStore = useCalculatorStore();
     const errMsgs = ['Error', 'Undefined', ':)'];
-    const operators = ['+', '-', '/', '*'];
+    const operators = ['.', '+', '-', '/', '*'];
     const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     
 
@@ -54,17 +54,26 @@ export default {
 
     const handleInput = (input) => {
       console.log("Last input: " + calcStore.lastInput);
-      if (hangingZero(input) && !calcStore.isCompleted && numbers.indexOf(input) >= 0) return;
-      if (input === '.' && operators.indexOf(calcStore.lastInput) >= 0) return;
-      if (input === '.' && hasHangingComma()) return;
+      if (hangingZero(input) && !calcStore.isCompleted && numbers.indexOf(input) >= 0) {
+        console.log("Hanging zero and isnt completed and is number");
+        return;
+      }
+      if (input === '.' && operators.indexOf(calcStore.lastInput) >= 0) {
+        console.log("Input comma, and last input was operator");
+        return;
+      }
+      if (input === '.' && hasHangingComma()) {
+        console.log("Input comma, and has hanging comma");
+        return;
+      }
 
       // Replace
-      if ((errMsgs.indexOf(calcStore.displayValue) >= 0 || calcStore.displayValue === '0') && operators.indexOf(input) >= 0) {
-        console.log("Second");
+      if ((errMsgs.indexOf(calcStore.displayValue) >= 0 || calcStore.isCompleted) && operators.indexOf(input) >= 0) {
+        console.log("First");
         calcStore.isCompleted = false;
         calcStore.displayValue = '0' + input;
       } else if (calcStore.isCompleted || errMsgs.indexOf(calcStore.displayValue) >= 0) {
-        console.log("First");
+        console.log("Second");
         calcStore.isCompleted = false;
         calcStore.displayValue = input;
       } else if (operators.indexOf(input) >= 0 && hangingOperator()) {
@@ -99,27 +108,6 @@ export default {
       } else{
         calcStore.calculateResult();
       }
-      /* try {
-        calcStore.isCompleted = true;
-        calcStore.commaHang = false;
-        if (calcStore.errMsgs.indexOf(calcStore.displayValue) >= 0) {
-          calcStore.displayValue = '0';
-          return;
-        }
-        const fracs = calcStore.displayValue.split('/');
-        const nFracs = fracs.length;
-        let ret = eval(calcStore.displayValue).toString();
-
-        if (fracs.slice(1, nFracs).some(frac => eval(frac).toString() === '0')) {
-          ret = 'Undefined';
-        }
-        logg(calcStore.displayValue + " = " + ret);
-        calcStore.displayValue = ret;
-        setPrevAns(ret);
-      } catch {
-        logg(calcStore.displayValue + " = " + "Error");
-        calcStore.displayValue = 'Error';
-      } */
     };
 
     const setPrevAns = (newAns) => {

@@ -10,6 +10,7 @@
     "lint": "eslint . --fix",
     "test": "vitest",
     "json-server": "json-server --watch db.json --port 3000",
+    "mvn": "cd ../backend && mvn spring-boot:run",
     "e2e": "npx cypress open"
   },
   "dependencies": {

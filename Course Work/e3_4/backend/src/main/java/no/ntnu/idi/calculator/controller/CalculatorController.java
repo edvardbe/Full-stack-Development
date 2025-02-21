@@ -19,6 +19,7 @@ public class CalculatorController {
     public CalculatorController(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
+    //@GetMapping("/user")
 
     @PostMapping
     public Map<String, Object> calculate(@RequestBody CalculationRequest request) {
@@ -30,9 +31,14 @@ public class CalculatorController {
 
             logger.info("Returning result: {}", result);
             resultMap = Map.of("result", result);
-        } catch (Exception e){
-            logger.info(e.getMessage());
+        } 
+        catch (ArithmeticException arithmeticException){
+            logger.info("Backend caught arithmetic exception: {}", arithmeticException.getMessage());
             resultMap = Map.of("result", "Undefined");
+        }
+        catch (Exception e){
+            logger.info("Backend caught exception: {}", e.getMessage());
+            resultMap = Map.of("result", "Error");
         }
         return resultMap;
     }

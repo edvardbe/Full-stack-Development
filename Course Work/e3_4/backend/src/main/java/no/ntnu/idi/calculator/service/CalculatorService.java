@@ -10,24 +10,18 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 public class CalculatorService {
 
     public double calculate(String expression) {
-        try {
-            
-            String[] fracs = expression.split("/");
-            int nFracs = fracs.length;
-    
-            for (int i = 1; i < nFracs; i++) {
-                System.out.println(fracs[i]);
-                Expression frac = new ExpressionBuilder(fracs[i]).build();
-                
-                double num = frac.evaluate();
-                if (num == 0) throw new ArithmeticException("Divide by zero");
-            }
-            Expression e = new ExpressionBuilder(expression).build();
-            return e.evaluate();
+        String[] fracs = expression.split("/");
+        int nFracs = fracs.length;
 
-        } catch (Exception exception){
-            throw exception;
+        for (int i = 1; i < nFracs; i++) {
+            System.out.println(fracs[i]);
+            Expression frac = new ExpressionBuilder(fracs[i]).build();
+            
+            double num = frac.evaluate();
+            if (num == 0) throw new ArithmeticException("Divide by zero");
         }
+        Expression e = new ExpressionBuilder(expression).build();
+        return e.evaluate();
     }
 
 }
