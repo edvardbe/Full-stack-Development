@@ -4,9 +4,9 @@ import no.ntnu.idi.calculator.model.CalculationRequest;
 import no.ntnu.idi.calculator.service.CalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/calculate")
@@ -22,24 +22,23 @@ public class CalculatorController {
     //@GetMapping("/user")
 
     @PostMapping
-    public Map<String, Object> calculate(@RequestBody CalculationRequest request) {
-        Map<String, Object> resultMap = Map.of("", "");
+    public ResponseEntity<Object> calculate(@RequestBody CalculationRequest request) {
         try {
             logger.info("Received request: {}", request.getExpression());
 
             double result = calculatorService.calculate(request.getExpression());
 
             logger.info("Returning result: {}", result);
-            resultMap = Map.of("result", result);
+
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } 
         catch (ArithmeticException arithmeticException){
             logger.info("Backend caught arithmetic exception: {}", arithmeticException.getMessage());
-            resultMap = Map.of("result", "Undefined");
+            return new ResponseEntity<>("Undefined", HttpStatus.BAD_REQUEST);
         }
         catch (Exception e){
             logger.info("Backend caught exception: {}", e.getMessage());
-            resultMap = Map.of("result", "Error");
+            return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return resultMap;
     }
 }

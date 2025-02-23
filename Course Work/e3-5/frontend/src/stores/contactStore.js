@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
+
 
 export const useContactStore = defineStore('contactForm', {
     state: () => ({
@@ -12,19 +14,15 @@ export const useContactStore = defineStore('contactForm', {
     persist: true,
     actions: {
         async submit() {
-            try {
-                const response = await axios.post('http://localhost:8080/api/feedback', {
-                    fname: this.fname,
-                    lname: this.lname,
-                    email: this.email,
-                    designation: this.designation,
-                    feedback: this.feedback,
-                    userRating: this.userRating,
-                });
-
-            } catch (error) {
-                
+            const formData = {
+                fname: this.fname,
+                lname: this.lname,
+                email: this.email,
+                designation: this.designation,
+                feedback: this.feedback,
+                userRating: this.userRating
             }
+            const response = await axios.post('http://localhost:8080/api/feedback', formData)
         }
     }
 });

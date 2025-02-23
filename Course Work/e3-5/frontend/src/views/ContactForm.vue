@@ -96,27 +96,23 @@ export default {
     };
     
     const submitForm = () => {
-      if (!validateForm) {
-        console.error('Form is invalid');
-        return;
-      }
+      try {
 
-      const formData = {
-        "fname": store.fname,
-        "lname": store.lname,
-        "email": store.email,
-        "designation": store.designation,
-        "feedback": store.feedback,
-        "rating": store.userRating
-      }
-      axios.post('http://localhost:3000/feedback', formData)
-        .then(response => {
-          console.log('Form submitted successfully', response);
-          router.push('/success-view');
-        })
-        .catch(error => {
-          console.error('There was an error submitting the form!', error);
-        });
+        if (!validateForm) {
+          console.error('Form is invalid');
+          return;
+        }
+
+        store.submit();
+
+        console.log('Form submitted successfully');
+        router.push('/success-view'); 
+
+      } catch (error) {
+        
+        console.error('There was an error submitting the form!');
+
+      } 
     };
     const store = useContactStore();
 

@@ -11,6 +11,8 @@
     "test": "vitest",
     "json-server": "json-server --watch db.json --port 3000",
     "mvn": "cd ../backend && mvn spring-boot:run",
+    "mvn:install": "cd ../backend && mvn clean install",
+    "mvn:pack": "cd ../backend && mvn clean package",
     "e2e": "npx cypress open"
   },
   "dependencies": {

@@ -21,7 +21,7 @@ export const useCalculatorStore = defineStore('calculator', {
                 const response = await axios.post('http://localhost:8080/api/calculate', {
                     expression: this.displayValue
                 });
-                this.displayValue = response.data.result.toString();
+                this.displayValue = response.data.toString();
 
                 logEntry += this.displayValue;
 

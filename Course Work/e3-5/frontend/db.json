@@ -325,13 +325,31 @@
       "rating": 1
     },
     {
-      "id": "15c0",
+      "id": "5e55",
       "fname": "Jeg lover",
       "lname": "jeg mente ikke",
       "email": "virkelig.hjelp.jeg@trenger.hjelp",
-      "designation": "Other",
-      "feedback": "Hvorfor",
-      "rating": 1
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 0
+    },
+    {
+      "id": "0638",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 4
+    },
+    {
+      "id": "af98",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 2
     }
   ]
 }
