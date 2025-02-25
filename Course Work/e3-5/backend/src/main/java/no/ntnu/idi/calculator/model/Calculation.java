@@ -3,6 +3,8 @@ package no.ntnu.idi.calculator.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "calculations")
 public class Calculation {
@@ -17,12 +19,14 @@ public class Calculation {
     private double result; // F.eks. 4.0
 
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm dd.MM.yy")
     private LocalDateTime timestamp = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+     
     // Konstruktører, getters og setters
 
     public void setExpression(String expression) {

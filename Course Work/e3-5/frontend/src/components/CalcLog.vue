@@ -3,9 +3,9 @@
         <button class="collapsible" :class="{collapsed: this.isCollapsed, revealed: !this.isCollapsed}" @click="this.toggleCollapsed()">{{ this.isCollapsed ? 'Show Log' : 'Hide Log' }}</button>
         <div class="content-container" v-show="!this.isCollapsed">
         <div id="log" class="content">
-            <pre v-for="entry in store.log" :key="entry.id">{{ entry }}</pre>
+            <pre v-for="entry in calcStore.log" :key="entry.id">{{ entry }}</pre>
         </div>
-        <button class="clear-log" @click="store.clearLog()">&#128465 Clear log</button>
+        <button class="clear-log" @click="calcStore.clearLog()">&#128465 Clear log</button>
         </div>
     </div>
 </template>
@@ -25,12 +25,13 @@
           console.log("Log closed")
         } else {
           console.log("Log opened")
+          this.calcStore.setLogDisplay();
         };
       },
     },
     setup() {
-      const store = useCalculatorStore();
-      return { store };
+      const calcStore = useCalculatorStore();
+      return { calcStore };
     },
   };
 </script>

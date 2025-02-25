@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 
 
-export const useContactStore = defineStore('contactForm', {
+export const useFeedbackStore = defineStore('feedbackForm', {
     state: () => ({
         fname: '',
         lname: '',
@@ -11,7 +11,6 @@ export const useContactStore = defineStore('contactForm', {
         feedback: '',
         userRating: 0,
     }),
-    persist: true,
     actions: {
         async submit() {
             const formData = {
@@ -22,7 +21,12 @@ export const useContactStore = defineStore('contactForm', {
                 feedback: this.feedback,
                 userRating: this.userRating
             }
-            const response = await axios.post('http://localhost:8080/api/feedback', formData)
+            const response = await axios.post('http://localhost:3000/api/feedback', formData).then(result => {
+                console.log('Form submitted successfully');
+                router.push('/success'); 
+            }).catch(error => {
+                console.error('There was an error submitting the form!');
+            })
         }
     }
 });

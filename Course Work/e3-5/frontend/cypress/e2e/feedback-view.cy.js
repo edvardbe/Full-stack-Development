@@ -1,6 +1,6 @@
-describe('Contact Form Tests', () => {
+describe('Feedback View Tests', () => {
     beforeEach(() => {
-      cy.visit('/contact-form');
+      cy.visit('/feedback');
     });
   
     it('Should not submit an empty form', () => {
@@ -19,7 +19,7 @@ describe('Contact Form Tests', () => {
     });
   
     it('Should submit the form successfully', () => {
-        cy.visit('/contact-form');
+        cy.visit('/feedback');
       
         // Assuming your form has fields with these selectors
 
@@ -38,7 +38,7 @@ describe('Contact Form Tests', () => {
         cy.get('p').should('contain', 'Selected rating: 3');
   
         cy.get('input[type="submit"]').click();  // Adjust if needed
-        cy.url().should('include', '/success-view');
+        cy.url().should('include', '/success');
         cy.contains('Feedback successfully submitted!').should('be.visible');  
         
         

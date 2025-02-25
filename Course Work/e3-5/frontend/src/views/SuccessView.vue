@@ -10,7 +10,7 @@
     </div>
     <h1>Feedback successfully submitted!</h1>
     <nav>
-        <RouterLink name="contact-form" to="/contact-form" class="contact-link">New Contact Form</RouterLink>
+        <RouterLink name="feedback-view" to="/feedback" class="feedback-link">New Feedback Submission</RouterLink>
     </nav>
     <RouterView/>
     </div>

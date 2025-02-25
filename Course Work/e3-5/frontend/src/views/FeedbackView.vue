@@ -10,7 +10,7 @@
 
     </div>
 
-    <!-- Content of the contact form -->
+    <!-- Content of the feedback form -->
     <div class="content">
       <div class="name-box">
         <div class="name">
@@ -74,13 +74,13 @@
 <script>
 import { useRouter } from 'vue-router';
 import StarRating from '@/components/StarRating.vue';
-import { useContactStore } from '../stores/contactStore';
+import { useFeedbackStore } from '../stores/feedbackStore';
 import axios from 'axios';
 
 import { ref, computed } from 'vue';
 
 export default {
-  name: 'ContactForm',
+  name: 'FeedbackView',
 
   setup() {
     const router = useRouter();
@@ -96,8 +96,6 @@ export default {
     };
     
     const submitForm = () => {
-      try {
-
         if (!validateForm) {
           console.error('Form is invalid');
           return;
@@ -105,16 +103,8 @@ export default {
 
         store.submit();
 
-        console.log('Form submitted successfully');
-        router.push('/success-view'); 
-
-      } catch (error) {
-        
-        console.error('There was an error submitting the form!');
-
-      } 
     };
-    const store = useContactStore();
+    const store = useFeedbackStore();
 
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -157,7 +147,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 50%;
+  max-width: 70%;
   justify-content: center;
   align-items: center;
   padding: 30px;

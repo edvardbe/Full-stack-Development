@@ -3,19 +3,19 @@ describe('Navigation Tests', () => {
       cy.visit('/');
     });
   
-    it('Should navigate to the Contact Form page', () => {
-      cy.get('a[href="/contact-form"]').click(); // Adjust selector based on your app
-      cy.url().should('include', '/contact-form');
+    it('Should navigate to the Feedback page', () => {
+      cy.get('a[href="/feedback"]').click(); // Adjust selector based on your app
+      cy.url().should('include', '/feedback');
     });
 
     it('Should navigate back to the home view', () => {
-      cy.get('a[href="/contact-form"]').click(); // Adjust selector based on your app
+      cy.get('a[href="/feedback"]').click(); // Adjust selector based on your app
       cy.get('[name="exit"]').click();
-      cy.contains('Contact Form')
+      cy.contains('Submit Feedback')
     });
   
     it('Should navigate to the Success page after form submission', () => {
-      cy.visit('/contact-form');
+      cy.visit('/feedback');
       
       // Assuming your form has fields with these selectors
       cy.get('input[name="fname"]').type('John');
@@ -31,7 +31,7 @@ describe('Navigation Tests', () => {
       cy.get('p').should('contain', 'Selected rating: 3');
 
       cy.get('input[type="submit"]').click();  // Adjust if needed
-      cy.url().should('include', '/success-view');
+      cy.url().should('include', '/success');
       cy.contains('Feedback successfully submitted!').should('be.visible'); // Adjust text as needed
     });
   });

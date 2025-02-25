@@ -1,17 +1,17 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import ContactForm from '@/views/ContactForm.vue';
+import FeedbackView from '@/views/FeedbackView.vue';
 import { createPinia, setActivePinia } from 'pinia';
-import { useContactStore } from '@/stores/contactStore';
+import { useFeedbackStore } from '@/stores/feedbackStore';
 import axios from 'axios';
 
 vi.mock('axios');
 
-describe('ContactForm.vue', () => {
+describe('FeedbackView.vue', () => {
     let wrapper;
   beforeEach(() => {
     setActivePinia(createPinia());
-    wrapper = mount(ContactForm);
+    wrapper = mount(FeedbackView);
   });
 
   it('renders the form correctly', () => {
@@ -50,7 +50,7 @@ describe('ContactForm.vue', () => {
 
   it('submits form successfully', async () => {
     axios.post.mockResolvedValue({ data: { success: true } });
-    const store = useContactStore();
+    const store = useFeedbackStore();
     store.fname = 'Jane';
     store.lname = 'Doe';
     store.email = 'jane.doe@example.com';

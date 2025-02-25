@@ -138,7 +138,6 @@ export default {
 
     const isOperatorDisabled = (operator) => {
       let disabled = operator === calcStore.lastInput;
-      console.log("Operator: " + operator + ", disabled: " + disabled);
       return disabled;
     };
 
@@ -170,11 +169,8 @@ export default {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    min-width: 50%;
-    max-width: 50%;
-    height: 100%;
     margin: 10px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-end;
     padding: 30px; /* Space for expanded log */
     overflow-y: auto;
@@ -219,23 +215,6 @@ export default {
     display: block;
     margin: 0 auto 2rem;
   }
-  
-  /* @media (min-width: 1024px) {
-    header {
-      display: flex;
-      place-items: center;
-      padding-right: calc(var(--section-gap) / 2);
-    }
-  
-    .logo {
-      margin: 0 2rem 0 0;
-    }
-  
-    header .wrapper {
-      display: flex;
-      place-items: flex-start;
-      flex-wrap: wrap;
-    }
-  } */
+
 </style>
   
