@@ -1,10 +1,7 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:latest
     container_name: calculator-db
-    restart: always
     environment:
       POSTGRES_USER: calculator
       POSTGRES_PASSWORD: passord123

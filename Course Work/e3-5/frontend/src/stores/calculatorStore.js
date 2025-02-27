@@ -11,15 +11,15 @@ export const useCalculatorStore = defineStore('calculator', {
         lastInput: null,
         isCompleted: true,
         log: [],
-        db_log: [],
-
+/*         db_log: [],
+ */
     }),
 
     actions: {
         async calculateResult() {
             try {
-                let logEntry = this.displayValue + " = ";
-                console.log("Calculating: " + this.displayValue);
+/*                 let logEntry = this.displayValue + " = ";
+ */                console.log("Calculating: " + this.displayValue);
                 const authStore = useAuthStore();
 
                 const response = await axios.post('http://localhost:8080/api/calculations', {
@@ -28,12 +28,12 @@ export const useCalculatorStore = defineStore('calculator', {
                 });
                 this.displayValue = response.data.toString();
 
-                logEntry += this.displayValue;
-
+/*                 logEntry += this.displayValue;
+ */
                 this.previousAnswer = this.displayValue;
 
-                this.logger(logEntry);
-
+/*                 this.logger(logEntry);
+ */
             } catch (error) {
                 console.log("Failed to calculate: " + error);
                 this.displayValue = 'Error';
@@ -45,7 +45,7 @@ export const useCalculatorStore = defineStore('calculator', {
         },
 
         async setLogDisplay(){
-            this.db_log = [];
+            this.log = [];
 
             const authStore = useAuthStore();
             const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
@@ -55,13 +55,21 @@ export const useCalculatorStore = defineStore('calculator', {
                 response.data.forEach(element => {
                     let entry = element.expression + " = " + element.result + " : " + element.timestamp;
                     console.log(entry);
-                    this.db_log.push(entry);
+                    this.log.push(entry);
                 });
             }
         },
 
         clearLog() {
             this.log = [];
+        },
+
+        async clearDBLog() {
+            this.log = [];
+            const authStore = useAuthStore();
+            const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
+            const response = await axios.post(endpoint);
+
         },
     }
 });

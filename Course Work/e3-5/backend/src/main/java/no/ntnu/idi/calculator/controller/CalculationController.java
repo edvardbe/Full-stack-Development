@@ -47,7 +47,7 @@ public class CalculationController {
         } 
         catch (ArithmeticException arithmeticException){
             logger.info("Backend caught arithmetic exception: {}", arithmeticException.getMessage());
-            return new ResponseEntity<>("Undefined", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Undefined", HttpStatus.OK);
         }
         catch (Exception e){
             logger.info("Backend caught exception: {}", e.getMessage());
@@ -59,6 +59,19 @@ public class CalculationController {
         User user = userService.findByUsername(request.getUsername())
         .orElseThrow(() -> new RuntimeException("User not found"));
         return calculationService.saveCalculation(user, request.getExpression(), request.getResult());  
+    }
+
+    @PostMapping("/{username}")
+    public ResponseEntity<String> removeLast10Calculations(@PathVariable String username) {
+        try{
+            int numberOfCalculations = calculationService.deleteLast10UserCalculations(userService.findByUsername(username).orElseThrow());
+            String response = numberOfCalculations + ": Calculations was deleted successfully";
+            return new ResponseEntity<>(response, HttpStatus.OK); 
+        }
+        catch (Exception e){
+            logger.info("Backend caught exception: {}", e.getMessage());
+            return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/{username}")
