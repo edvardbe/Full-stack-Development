@@ -101,7 +101,8 @@ export default {
           return;
         }
 
-        store.submit();
+        const response = store.submit(router);
+        console.log(response);
 
     };
     const store = useFeedbackStore();

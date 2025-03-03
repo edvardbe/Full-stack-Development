@@ -12,7 +12,7 @@ export const useFeedbackStore = defineStore('feedbackForm', {
         userRating: 0,
     }),
     actions: {
-        async submit() {
+        async submit(router) {
             const formData = {
                 fname: this.fname,
                 lname: this.lname,
@@ -21,12 +21,15 @@ export const useFeedbackStore = defineStore('feedbackForm', {
                 feedback: this.feedback,
                 userRating: this.userRating
             }
-            const response = await axios.post('http://localhost:3000/api/feedback', formData).then(result => {
+
+            const response = await axios.post('http://localhost:3000/feedback', formData).then(result => {
                 console.log('Form submitted successfully');
-                router.push('/success'); 
+                router.push("/success");
             }).catch(error => {
-                console.error('There was an error submitting the form!');
+                console.error('There was an error submitting the form!', error);
             })
+
+            return response;
         }
     }
 });

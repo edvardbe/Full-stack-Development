@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import { useCalculatorStore } from "./calculatorStore";
+import { useFeedbackStore } from "./feedbackStore";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -12,6 +14,12 @@ export const useAuthStore = defineStore("auth", {
     logout() {
       this.user = null;
       localStorage.removeItem("user");
+
+      const calcStore = useCalculatorStore();
+      calcStore.$reset(); 
+
+      const feedbackStore = useFeedbackStore();
+      feedbackStore.$reset(); 
     },
   },
 });

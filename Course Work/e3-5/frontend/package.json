@@ -14,8 +14,8 @@
     "mvn:install": "cd ../backend && mvn clean install",
     "mvn:pack": "cd ../backend && mvn clean package",
     "e2e": "npx cypress open",
-    "docker:run": "cd .. pwd && docker compose up",
-    "docker:stop": "pwd && docker compose stop"
+    "docker": "cd .. && docker compose up",
+    "docker:stop": "cd .. && docker compose stop"
   },
   "dependencies": {
     "axios": "^1.7.9",

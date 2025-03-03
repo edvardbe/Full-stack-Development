@@ -131,7 +131,6 @@ export default {
     };
 
     const clear = () => {
-      calcStore.logger('CLEAR');
       calcStore.isCompleted = true;
       calcStore.displayValue = '0';
     };

@@ -11,15 +11,14 @@ export const useCalculatorStore = defineStore('calculator', {
         lastInput: null,
         isCompleted: true,
         log: [],
-/*         db_log: [],
- */
+        db_log: [],
+
     }),
 
     actions: {
         async calculateResult() {
             try {
-/*                 let logEntry = this.displayValue + " = ";
- */                console.log("Calculating: " + this.displayValue);
+                console.log("Calculating: " + this.displayValue);
                 const authStore = useAuthStore();
 
                 const response = await axios.post('http://localhost:8080/api/calculations', {
@@ -28,36 +27,33 @@ export const useCalculatorStore = defineStore('calculator', {
                 });
                 this.displayValue = response.data.toString();
 
-/*                 logEntry += this.displayValue;
- */
                 this.previousAnswer = this.displayValue;
 
-/*                 this.logger(logEntry);
- */
+                this.fetchLog();
             } catch (error) {
                 console.log("Failed to calculate: " + error);
                 this.displayValue = 'Error';
             }
         },
 
-        logger(message) {
-            this.log.push(message);
-        },
-
-        async setLogDisplay(){
-            this.log = [];
-
+        async fetchLog(){
+            
+            this.db_log = [];
             const authStore = useAuthStore();
             const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
             const response = await axios.get(endpoint)
 
             if(response.status == 200){
                 response.data.forEach(element => {
-                    let entry = element.expression + " = " + element.result + " : " + element.timestamp;
+                    console.log(element);
+                    let entry = [element.id, element.expression, element.result, element.timestamp];
                     console.log(entry);
-                    this.log.push(entry);
+                    this.db_log.push(entry);
                 });
             }
+
+            this.log = this.db_log;
+
         },
 
         clearLog() {
@@ -65,12 +61,38 @@ export const useCalculatorStore = defineStore('calculator', {
         },
 
         async clearDBLog() {
-            this.log = [];
+            this.db_log = [];
             const authStore = useAuthStore();
             const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
-            const response = await axios.post(endpoint);
+            const response = await axios.delete(endpoint);
+
+            if(response.status == 200){
+                console.log("Deleted last 10");
+            } else {
+                console.log("Failed deleting last 10");
+            }
 
         },
+
+        async deleteCalculation(id) {
+            if (!id) {
+                console.error("Error: ID is undefined");
+                return;
+            }
+            try {
+                await axios.delete(`http://localhost:8080/api/calculations/${id}`, { withCredentials: true });
+                console.log("Deleted calculation with ID:", id);
+            } catch (error) {
+                console.error("Error deleting calculation:", error);
+            }
+            this.log.forEach(element => {
+                console.log(element);
+                if(element[0] == id){
+                    this.log.splice(this.log.indexOf(element), 1)
+                }
+            });
+        }
+        
     }
 });
 

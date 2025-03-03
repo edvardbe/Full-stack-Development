@@ -3,9 +3,17 @@
         <button class="collapsible" :class="{collapsed: this.isCollapsed, revealed: !this.isCollapsed}" @click="this.toggleCollapsed()">{{ this.isCollapsed ? 'Show Log' : 'Hide Log' }}</button>
         <div class="content-container" v-show="!this.isCollapsed">
         <div id="log" class="content">
-            <pre v-for="entry in calcStore.log" :key="entry.id">{{ entry }}</pre>
+          <div v-for="entry in calcStore.log" :key="entry[0]" class="entry">
+            <span>{{ entry[1] }} = {{ entry[2] }} :</span>
+            <span class="timestamp"> {{ entry[3] }} </span>
+            <button @click="calcStore.deleteCalculation(entry[0])" class="delete-btn"></button>
+          </div>
+
         </div>
-        <button class="clear-log" @click="calcStore.clearLog()">&#128465 Clear log</button>
+          <div style="display: flex">
+            <button class="log-btn" @click="calcStore.clearLog()">&#128465 Clear log</button>
+            <button class="log-btn" @click="calcStore.fetchLog()">&#8634 Fetch log</button>
+          </div>
         </div>
     </div>
 </template>
@@ -25,7 +33,7 @@
           console.log("Log closed")
         } else {
           console.log("Log opened")
-          this.calcStore.setLogDisplay();
+          this.calcStore.fetchLog();
         };
       },
     },
@@ -57,9 +65,38 @@
         border-radius: 5px;
     } */
 
-    .clear-log{
+
+    .entry {
+      display: flex;  
+      align-items: center;  /* Keeps elements aligned on the same line */
+      gap: 5px;  /* Adds some space between elements */
+    }
+
+    .timestamp {
+      color: gray;
+      font-style: italic;
+    }
+
+    .delete-btn {
+      background: none;
+      color: white;
+      border: none;
+      padding: 2px 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .delete-btn:after{
+    content:'x';
+    }
+    .delete-btn:hover:after{
+        color: red;
+        content:'x';
+    }
+
+    .log-btn{
       width: 50%;
-      height: 30%;
+      height: 30px;
       font-size: 14px;
       background-color: #3c3c3c;
       border: 1px solid #ddd;
@@ -105,6 +142,7 @@
     background-color: #2d2d2d;
     color: white;
     font-size: 10px;
+
     }
 
     .content {
@@ -118,5 +156,7 @@
     color: white;
     text-align: center;
     font-size: 10px;
+    align-items: center;
+    justify-items: center;
     }
 </style>
