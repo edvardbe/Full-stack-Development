@@ -46,7 +46,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-  if (!authStore.user && to.path !== '/login') {
+  if (!authStore.username && to.path !== '/login') {
     next('/login'); // Send ikke-loggede brukere til login
   } else {
     next();

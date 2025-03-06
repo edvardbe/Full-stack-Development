@@ -1,42 +1,64 @@
 package no.ntnu.idi.calculator.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.List;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     @Column(nullable = false, unique = true)
     private String username;
 
+    @NonNull
     @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Calculation> calculations;
 
-    public void setUsername(String username) {
-        this.username = username;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getUsername() {
-        return this.username;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public String getPassword() {
-        return this.password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
-    // Konstruktører, getters og setters
 
-    public Long getId() {
-        return this.id;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

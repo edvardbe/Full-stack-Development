@@ -61,7 +61,7 @@ public class CalculationController {
         return calculationService.saveCalculation(user, request.getExpression(), request.getResult());  
     }
 
-    @PostMapping("/{username}")
+    @DeleteMapping("/{username}")
     public ResponseEntity<String> removeLast10Calculations(@PathVariable String username) {
         try{
             int numberOfCalculations = calculationService.deleteLast10UserCalculations(userService.findByUsername(username).orElseThrow());
@@ -72,6 +72,13 @@ public class CalculationController {
             logger.info("Backend caught exception: {}", e.getMessage());
             return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCalculation(@PathVariable Long id) {
+        System.out.println("Deleting calculation with ID: " + id);
+        calculationService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{username}")

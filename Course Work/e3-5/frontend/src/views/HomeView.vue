@@ -3,7 +3,7 @@
     <Calculator/>
     <button class="link feedback" @click="feedback">Submit Feedback</button>
 
-    <button class="link logout" v-if="authStore.user" @click="logout">Log out</button>
+    <button class="link logout" v-if="authStore.username" @click="logout">Log out</button>
     
   </div>
 </template>

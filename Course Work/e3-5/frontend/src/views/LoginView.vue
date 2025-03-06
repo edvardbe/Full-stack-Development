@@ -35,16 +35,20 @@
     methods: {
       async handleSubmit() {
         try {
-          const endpoint = this.isRegistering ? "http://localhost:8080/api/users/register" : "http://localhost:8080/api/users/login";
-          
-          const response = await axios.post(endpoint, {
+          const endpoint = this.isRegistering ? "http://localhost:8080/api/v1/auth/register" : "http://localhost:8080/api/v1/auth/authenticate";
+          const loginData = { 
             username: this.username,
             password: this.password,
-          }, { withCredentials: true }); // Viktig for CORS hvis cookies brukes
+          }
+          const response = await axios.post(endpoint, loginData, { withCredentials: true }); // Viktig for CORS hvis cookies brukes
+
+          console.log("Login response: " + JSON.stringify(response.data));
           const authStore = useAuthStore();
           if(response.status = 200){
+
             authStore.setUser(response.data); // Oppdater Zustand/Pinia store
-            localStorage.setItem("user", JSON.stringify(response.data));
+
+
             console.log("Push to '/', status: " + response.status);
             this.$router.push("/");
           }

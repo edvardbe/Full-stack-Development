@@ -17,42 +17,60 @@ export const useCalculatorStore = defineStore('calculator', {
 
     actions: {
         async calculateResult() {
-            try {
-                console.log("Calculating: " + this.displayValue);
-                const authStore = useAuthStore();
+            console.log("Calculating: " + this.displayValue);
+            const authStore = useAuthStore();
+            const requestData = {
+                username: authStore.username,
+                expression: this.displayValue,
+            }
 
-                const response = await axios.post('http://localhost:8080/api/calculations', {
-                    username: authStore.user.username,
-                    expression: this.displayValue
-                });
+            const token = authStore.token;
+            console.log("Token in post: " + token)
+            const response = axios.post('http://localhost:8080/api/calculations', requestData, { headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }}).then(response => {
+                    
                 this.displayValue = response.data.toString();
-
                 this.previousAnswer = this.displayValue;
-
                 this.fetchLog();
-            } catch (error) {
+            })
+            .catch(error => {
                 console.log("Failed to calculate: " + error);
                 this.displayValue = 'Error';
-            }
+            });
+                
+            
         },
 
         async fetchLog(){
-            
-            this.db_log = [];
-            const authStore = useAuthStore();
-            const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
-            const response = await axios.get(endpoint)
+            try{
+                this.db_log = [];
+                const authStore = useAuthStore();
+                const endpoint = 'http://localhost:8080/api/calculations/' + authStore.username;
 
-            if(response.status == 200){
-                response.data.forEach(element => {
-                    console.log(element);
-                    let entry = [element.id, element.expression, element.result, element.timestamp];
-                    console.log(entry);
-                    this.db_log.push(entry);
-                });
-            }
+                const token = authStore.token;
 
-            this.log = this.db_log;
+                console.log("Token in GET: " + token)
+
+                const response = await axios.get(endpoint, { headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }});
+
+                if(response.status == 200){
+                    response.data.forEach(element => {
+                        console.log(element);
+                        let entry = [element.id, element.expression, element.result, element.timestamp];
+                        console.log(entry);
+                        this.db_log.push(entry);
+                    });
+                }
+
+                this.log = this.db_log;
+        } catch(error){
+            console.error("Failed to get calculations: " + error);
+        }
 
         },
 
@@ -63,8 +81,8 @@ export const useCalculatorStore = defineStore('calculator', {
         async clearDBLog() {
             this.db_log = [];
             const authStore = useAuthStore();
-            const endpoint = 'http://localhost:8080/api/calculations/' + authStore.user.username;
-            const response = await axios.delete(endpoint);
+            const endpoint = 'http://localhost:8080/api/calculations/' + authStore.username;
+            const response = await axios.delete(endpoint, {withCredentials: true} );
 
             if(response.status == 200){
                 console.log("Deleted last 10");

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/feedback")
-@CrossOrigin(origins = "http://localhost:5173") // Viktig for Vue frontend
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class FeedbackController {
 
     private static final Logger logger = LoggerFactory.getLogger(FeedbackController.class);

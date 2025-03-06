@@ -42,17 +42,20 @@ public class CalculationService {
         return calculationRepository.save(calculation);
     }
 
+    public List<Calculation> getLast10Calculations(Long userId) {
+        return calculationRepository.findTop10ByUserIdOrderByTimestampDesc(userId);
+    }
+
+    public void deleteById(Long id) {
+        calculationRepository.deleteById(id);
+    }
+
     public int deleteLast10UserCalculations(User user) {
         List<Calculation> calculations = getLast10Calculations(user.getId());
         int length = calculations.size();
         for (Calculation calculation : calculations) {
             calculationRepository.delete(calculation);
         }
-
         return length;
-    }
-
-    public List<Calculation> getLast10Calculations(Long userId) {
-        return calculationRepository.findTop10ByUserIdOrderByTimestampDesc(userId);
     }
 }
