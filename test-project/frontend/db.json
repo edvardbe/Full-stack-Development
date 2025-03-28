@@ -1,0 +1,625 @@
+{
+  "feedback": [
+    {
+      "id": "0",
+      "fname": "Test",
+      "lname": "Testinson",
+      "email": "lorem@ipsum.com",
+      "designation": "Other",
+      "feedback": "Very Good!:)",
+      "rating": 5
+    },
+    {
+      "id": "4a3b",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "teacher",
+      "feedback": "This might be it:)",
+      "rating": 5
+    },
+    {
+      "id": "55fc",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "f9f2",
+      "fname": "Lærer",
+      "lname": "Lærersen",
+      "email": "kanskje@xn--lrer-voa.no",
+      "designation": "teacher",
+      "feedback": "Jeg er en streng lærer",
+      "rating": 1
+    },
+    {
+      "id": "14e6",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 2
+    },
+    {
+      "id": "d2cd",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database",
+      "rating": 2
+    },
+    {
+      "id": "2280",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database",
+      "rating": 2
+    },
+    {
+      "id": "0e9e",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database,\nIt worked:)!",
+      "rating": 5
+    },
+    {
+      "id": "923e",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database,\nIt worked:)!",
+      "rating": 5
+    },
+    {
+      "id": "511f",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database,\nIt worked:)!",
+      "rating": 5
+    },
+    {
+      "id": "d3a9",
+      "fname": "Waiting",
+      "lname": "For This",
+      "email": "to@apear.in",
+      "designation": "student",
+      "feedback": "the database,\nIt worked:)!",
+      "rating": 5
+    },
+    {
+      "id": "bab6",
+      "fname": "Tullball",
+      "lname": "Hvis Dette",
+      "email": "funker@lol.no",
+      "designation": "student",
+      "feedback": "Ja men da var jeg ferdig med det funksjonelle",
+      "rating": 5
+    },
+    {
+      "id": "fae5",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "796b",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "682f",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "7021",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "db2e",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "bdbd",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "e9fd",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "fd10",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "b465",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "3760",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "f730",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "2746",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "19f6",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "de91",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "b141",
+      "fname": "John",
+      "lname": "John",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "7f15",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "4ab3",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "5b97",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "3f97",
+      "fname": "asd",
+      "lname": "asd",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 3
+    },
+    {
+      "id": "55a7",
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@example.com",
+      "designation": "Teacher",
+      "feedback": "This is a test message.",
+      "rating": 3
+    },
+    {
+      "id": "c779",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "d961",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "8221",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "rating": 1
+    },
+    {
+      "id": "b827",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "edvard.hjelp.eek@gmail.com",
+      "designation": "Other",
+      "feedback": "Hvorfor",
+      "rating": 1
+    },
+    {
+      "id": "5e55",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 0
+    },
+    {
+      "id": "0638",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 4
+    },
+    {
+      "id": "af98",
+      "fname": "Jeg lover",
+      "lname": "jeg mente ikke",
+      "email": "virkelig.hjelp.jeg@trenger.hjelp",
+      "designation": "Teacher",
+      "feedback": "Hvorfors",
+      "userRating": 2
+    },
+    {
+      "id": "a283",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "93ab",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "66db",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "f5d3",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "1529",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "278d",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "6193",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "2c19",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "d02d",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "176f",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "e53f",
+      "fname": "asd",
+      "lname": "asd",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "7306",
+      "fname": "asd",
+      "lname": "asd",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "b719",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "poin",
+      "userRating": 2
+    },
+    {
+      "id": "e66c",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "cf06",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 2
+    },
+    {
+      "id": "08b1",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "a333",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "a983",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "efa3",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "402f",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "5aab",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "2a2c",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "1f20",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "lololol",
+      "userRating": 3
+    },
+    {
+      "id": "3ac7",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "de08",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "f9e2",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "be36",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Student",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "3e5a",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Teacher",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "87ca",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Teacher",
+      "feedback": "asd",
+      "userRating": 3
+    },
+    {
+      "id": "b412",
+      "fname": "Edvard Berdal",
+      "lname": "Eek",
+      "email": "edvard.berdal.eek@gmail.com",
+      "designation": "Teacher",
+      "feedback": "sadads",
+      "userRating": 3
+    }
+  ]
+}

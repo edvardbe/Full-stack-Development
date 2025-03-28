@@ -1,0 +1,6 @@
+[submodule "Project-IDATT2105-2025/backend"]
+	path = Project-IDATT2105-2025/backend
+	url = git@gitlab.stud.idi.ntnu.no:project-idatt2105-2025/backend.git
+[submodule "Project-IDATT2105-2025/frontend"]
+	path = Project-IDATT2105-2025/frontend
+	url = git@gitlab.stud.idi.ntnu.no:project-idatt2105-2025/frontend.git
